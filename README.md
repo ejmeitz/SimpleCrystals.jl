@@ -1,2 +1,2 @@
 # AtomicCrystals.jl
- An interface for creating crystal geometries from bravais lattices. 
+ An interface for creating crystal geometries for molecular simulation.
