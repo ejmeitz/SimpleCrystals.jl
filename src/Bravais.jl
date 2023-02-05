@@ -18,7 +18,7 @@ struct Centered <: CenteringType end #2D
 
 
 
-struct BravaisLattice{D} #<: Lattice
+struct BravaisLattice{D,L} #<: Lattice
     crystal_family::CrystalFamily{D}
     centering_type::CenteringType
     primitive_vectors::MMatrix{D,D}
@@ -27,12 +27,6 @@ end
 function BravaisLattice(cf::CrystalFamily{D}, ct::CenteringType) where D
     p_vec = get_primitive_vectors(cf,ct)
     return BravaisLattice{D}(cf, ct, p_vec)
-end
-
-
-struct Crystal{D}
-    lattice::BravaisLattice{D}
-    basis::SVector{Atom}
 end
 
 #####################################################
@@ -146,7 +140,7 @@ end
 
 FaceCenteredSupportedTypes = Union{Cubic, Orthorhombic}
 function get_primitive_vectors(cf::FaceCenteredSupportedTypes, ct::FaceCentered)
-    primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0])
+    primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0]) * one(cf.lattice_constants[1])
     primitive_vectors .*= transpose(cf.lattice_constants)
     return primitive_vectors
 end

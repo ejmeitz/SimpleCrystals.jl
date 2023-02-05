@@ -3,6 +3,17 @@ export
     FCC,
     BCC
 
+
+struct Crystal{D,L}
+    lattice::BravaisLattice{D}
+    basis::SVector{Atom}
+    length_unit::L
+end
+
+function Crystal(lattice, basis)
+
+end
+
 # 3D version
 function get_lattice_points(lattice::BravaisLattice{3}, N::SVector{3})
 
@@ -66,10 +77,11 @@ end
 # end
 
 #Monoatomic FCC
+
 function FCC(a, atom::Atom)
     lattice = BravaisLattice(Cubic(a), FaceCentered())
-    basis = SVector(BasisAtom{3}(SVector(0.0,0.0,0.0), atom))
-    return Crystal{3}(lattice,basis)
+    basis = SVector(Atom(atom, SVector(zero(a),zero(a),zero(a))))
+    return Crystal{3}(lattice, basis)
 end
 
 # struct BCC <: Crystal

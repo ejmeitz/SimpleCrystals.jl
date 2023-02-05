@@ -1,4 +1,4 @@
-module CrystalStructres
+module AtomicCrystals
 
 using Reexport
 using PeriodicTable
