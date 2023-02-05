@@ -1,12 +1,10 @@
 #Add support for vectors in N_unit_cells
+ 
 #Only supports 3d crystals, cant make something like graphene
-#This framework should capture most of the crystals one would want to make
-    #but this framework is by no means generic enought to create anything
 
-#stop float promotion in primitive vectors??
 
 export
-    nothing
+    Crystal
 
  
 #########
@@ -23,27 +21,34 @@ struct FaceCentered <: CenteringType end
 struct BodyCentered <: CenteringType end
 struct BaseCentered <: CenteringType end
 
-struct BravaisLattice{T} <: Lattice
+struct BravaisLattice{D} <: Lattice
     crystal_family::CrystalFamily
-    centering_type::CenteringTypes
-    primitive_vectors::T
+    centering_type::CenteringType
+    primitive_vectors::MMatrix{D,D}
 end
 
-struct BasisAtom{T}
-    basis_vector::SVector{3,T}
+function BravaisLattice(cf::CrystalFamily, ct::CenteringType, dim::Integer)
+    p_vec = get_primitive_vectors(cf,ct)
+    return BravaisLattice{dim}(cf, ct, p_vec)
+end
+
+
+struct Atom{D}
+    sym::Symbol
+    position::SVector{D}
+end
+
+struct BasisAtom{D}
+    basis_vector::SVector{D}
     atom::Atom
 end
 
-struct Crystal
-    lattice::Lattice
-    basis::SVector{BasisAtom}
+
+struct Crystal{D}
+    lattice::BravaisLattice{D}
+    basis::SVector{BasisAtom{D}}
 end
 
-
-function BravaisLattice(cf::CrystalFamily, ct::CenteringTypes)
-    p_vec = get_primitive_vectors(cf,ct)
-    return BravaisLattice{typeof(p_vec)}(cf, ct, p_vec)
-end
 
 
 #####################################################
@@ -156,54 +161,9 @@ end
 
 BaseCenteredSupportedTypes = Union{Monoclinic, Orthorhombic}
 function get_primitive_vectors(cf::BaseCenteredSupportedTypes, ct::BaseCentered)
-
-end
-
-
-#####################################################
-
-
-function get_lattice_points(lattice::BravaisLattice, Nx, Ny, Nz)
-
-    #Store in 1D?
-    lattice_points = SVector{Nx*Ny*Nz,SVector{3}}(undef)
-
-    #WRONG LOOP PARAMS
-    for i in range(1,Nx), j in range(1,Ny), k in range(1,Nz)
-        idx = i + (j * Nx) + (k * Nx * Ny)
-        lattice_points[idx] = i.*lattice.primitive_vectors[1,:] .+ j.*lattice.primitive_vectors[2,:] .+ k.lattice.primitive_vectors[3,:]
-    end
-
-    return lattice_points
-end
-
-function replicate_unit_cell(crystal::Crystal, Nx, Ny, Nz)
-    @assert N_unit_cells > 0 "Number of unit cells should be positive"
-
-    #Probably a way to get LP an not allocate all this memory
-    lattice_points = get_lattice_points(crystal.lattice, Nx, Ny, Nz)
-    N_atoms = sum(length, lattice_points) * length(crystal.basis)
-
-    #Create flat arrays for atoms & coords
-    atoms = SVector{N_atoms,Atom}
-    coords = SVector{N_atoms,SVector{3}}
-
-    #Superimpose basis onto lattice points
-    i = 1
-    for lp in lattice_points
-        for basis_atom in crystal.basis
-            coords[i] = lp .+ basis_atom.position
-            atoms[i] = basis_atom.atom
-            i += 1
-        end
-    end
-
-    #Create boundary that captures crystal
-    boundary = CubicBoundary()
-    #return trinclinic if Triclinic crystasl
-
-
-    return atoms, coords, boundary
+    primitive_vectors = MMatrix{3,3}([1.0 1.0 0.0; 1.0 -1.0 0.0; 0.0  0.0  1.0])
+    primitive_vectors .*= transpose(cf.lattice_constants)
+    return primitive_vectors
 end
 
 
@@ -213,32 +173,3 @@ end
 rotateAboutA!(v, θ) = copyto!(v, MMatrix{3,3}([1.0 0.0 0.0; 0.0 cos(θ) -sin(θ); 0  sin(θ)  cos(θ)]) * v)
 rotateAboutB!(v, θ) = copyto!(v, MMatrix{3,3}([cos(θ) 0.0 sin(θ); 0.0 1.0 0.0; -sin(θ) 0.0 cos(θ)]) * v)
 rotateAboutC!(v, θ) = copyto!(v, MMatrix{3,3}([cos(θ) -sin(θ) 0.0; sin(θ) cos(θ) 0.0; 0.0  0.0  1.0]) * v)
-
-
-#Implement common crystal structures
-struct FCC <: Crystal
-    lattice::Lattice
-    basis::SVector{BasisAtom}
-end
-
-function FCC(a, atom::Atom)
-    lattice = BravaisLattice(Cubic(a), FaceCentered())
-    basis = SVector(BasisAtom(SVector(0.0,0.0,0.0), atom))
-    return Crystal(lattice,basis)
-end
-
-struct BCC <: Crystal
-    
-end
-
-function BCC(a, atom::Atom)
-
-end
-
-struct Diamond <: Crystal
-
-end
-
-function Diamond(a, atom::Atom)
-
-end
