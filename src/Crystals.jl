@@ -1,4 +1,8 @@
 
+export
+    FCC,
+    BCC
+
 # 3D version
 function get_lattice_points(lattice::BravaisLattice{3}, N::SVector{3})
 
@@ -31,19 +35,6 @@ function get_lattice_points(lattice::BravaisLattice{2}, N::SVector{2})
     return lattice_points
 end
 
-#1D
-function get_lattice_points(lattice::BravaisLattice{1}, N::SVector{1})
-
-    Nx = N[1]
-    lattice_points = SVector{Nx,SVector{D}}(undef)
-
-    for i in range(0,Nx)
-        lattice_points[i] = i.*lattice.primitive_vectors[1,:]
-    end
-
-    return lattice_points
-end
-
 
 function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
     @assert all(N .> 0) "Number of unit cells should be positive"
@@ -54,25 +45,17 @@ function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
 
     #Create flat arrays for atoms & coords
     atoms = SVector{N_atoms,Atom}
-    coords = SVector{N_atoms,SVector{D}}
 
     #Superimpose basis onto lattice points
     i = 1
     for lp in lattice_points
-        for basis_atom in crystal.basis
-            coords[i] = lp .+ basis_atom.position
-            atoms[i] = basis_atom
+        for basis_atom in crystal.basis         
+            atoms[i] = Atom(basis_atom, lp .+ basis_atom.position)
             i += 1
         end
     end
 
-    #Maximum extent of crystal in each direction
-    dimensions = N .* crystal.lattice.lattice_constants
-
-
-
-
-    return atoms, coords, dimensions
+    return atoms
 end
 
 
@@ -95,7 +78,7 @@ end
 
 function BCC(a, atom::Atom)
     lattice = BravaisLattice(Cubic(a), BodyCentered())
-    basis = SVector(BasisAtom{3}(SVector(0.0,0.0,0.0), atom))
+    basis = SVector(atom)
     return Crystal{3}(lattice,basis)
 end
 

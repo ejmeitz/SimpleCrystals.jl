@@ -1,13 +1,5 @@
-#Add support for vectors in N_unit_cells
- 
-#Only supports 3d crystals, cant make something like graphene
-
-
 export
-    Crystal,
-    BasisAtom,
-    Atom
-
+    Crystal
  
 #########
 # TYEPS #
@@ -27,7 +19,7 @@ struct Centered <: CenteringType end #2D
 
 
 struct BravaisLattice{D} #<: Lattice
-    crystal_family::CrystalFamily
+    crystal_family::CrystalFamily{D}
     centering_type::CenteringType
     primitive_vectors::MMatrix{D,D}
 end
@@ -178,14 +170,16 @@ function get_primitive_vectors(cf::CrystalFamily{2}, ct::Primitive)
     primitive_vectors .*= transpose(cf.lattice_constants)
     
     if hasfield(cf, lattice_angle)
-        #Keep first vector along ̂x, rotate second so angle between vectors is θ
-        asasd
+        β = cf.lattice_angle - 90u"°"
+        primitive_vectors[2,:] = [cos(β) -sin(β); sin(β)  cos(β)] * primitive_vectors[2,:]
     end
     return primitive_vectors
 end
 
 function get_primitive_vectors(cf::Rectangular, ct::Centered)
-
+    primitive_vectors = MMatrix{2,2}([0.5 0.5; 0.5 -0.5])
+    primitive_vectors .*= transpose(cf.lattice_constants)
+    return primitive_vectors
 end
 
 
