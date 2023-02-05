@@ -61,7 +61,7 @@ function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
     for lp in lattice_points
         for basis_atom in crystal.basis
             coords[i] = lp .+ basis_atom.position
-            atoms[i] = basis_atom.atom
+            atoms[i] = basis_atom
             i += 1
         end
     end
@@ -76,30 +76,32 @@ function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
 end
 
 
-#Implement common crystal structures
-struct FCC <: Crystal
-    lattice::Lattice
-    basis::SVector{BasisAtom}
-end
+# #Implement common crystal structures
+# struct FCC <: Crystal
+#     lattice::BravaisLattice{D}
+#     basis::SVector{BasisAtom{D}}
+# end
 
 #Monoatomic FCC
 function FCC(a, atom::Atom)
     lattice = BravaisLattice(Cubic(a), FaceCentered())
-    basis = SVector(BasisAtom(SVector(0.0,0.0,0.0), atom))
+    basis = SVector(BasisAtom{3}(SVector(0.0,0.0,0.0), atom))
     return Crystal{3}(lattice,basis)
 end
 
-struct BCC <: Crystal
+# struct BCC <: Crystal
     
-end
+# end
 
 function BCC(a, atom::Atom)
-
+    lattice = BravaisLattice(Cubic(a), BodyCentered())
+    basis = SVector(BasisAtom{3}(SVector(0.0,0.0,0.0), atom))
+    return Crystal{3}(lattice,basis)
 end
 
-struct Diamond <: Crystal
+# struct Diamond <: Crystal
 
-end
+# end
 
 function Diamond(a, basis::Atom)
 

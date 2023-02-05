@@ -1,15 +1,15 @@
 module CrystalStructres
 
-using Unitful
-using StaticArrays
 using Reexport
+using PeriodicTable
 
+@reexport using AtomsBase
 @reexport using Unitful
 @reexport using StaticArrays
 
-
-include("Bravais.jl")
-include("Crystals.jl")
+include("atoms.jl")
+include("bravais.jl")
+include("crystals.jl")
 
 
 end
