@@ -18,7 +18,7 @@ struct Centered <: CenteringType end #2D
 
 
 
-struct BravaisLattice{D,L} #<: Lattice
+struct BravaisLattice{D} #<: Lattice
     crystal_family::CrystalFamily{D}
     centering_type::CenteringType
     primitive_vectors::MMatrix{D,D}
@@ -121,7 +121,7 @@ Hexagonal2D(a) = Hexagonal2D{typeof(a)}(SVector(a,a), 120u"°")
 
 function get_primitive_vectors(cf::CrystalFamily{3}, ct::Primitive)
     primitive_vectors = MMatrix{3,3}([1.0 0.0 0.0; 0.0 1.0 0.0; 0.0 0.0 1.0])
-    primitive_vectors .*= transpose(cf.lattice_constants)
+    primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
 
     if hasfield(cf, lattice_angles)
         #rotate a-axis
@@ -140,28 +140,29 @@ end
 
 FaceCenteredSupportedTypes = Union{Cubic, Orthorhombic}
 function get_primitive_vectors(cf::FaceCenteredSupportedTypes, ct::FaceCentered)
-    primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0]) * one(cf.lattice_constants[1])
-    primitive_vectors .*= transpose(cf.lattice_constants)
+    primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0])
+    primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
+    print(primitive_vectors)
     return primitive_vectors
 end
 
 BodyCenteredSupportedTypes = Union{Cubic, Orthorhombic, Tetragonal}
 function get_primitive_vectors(cf::BodyCenteredSupportedTypes, ct::BodyCentered)
     primitive_vectors = MMatrix{3,3}([1.0 0.0 0.0; 0.0 1.0 0.0; 0.5  0.5  0.5])
-    primitive_vectors .*= transpose(cf.lattice_constants)
+    primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     return primitive_vectors
 end
 
 BaseCenteredSupportedTypes = Union{Monoclinic, Orthorhombic}
 function get_primitive_vectors(cf::BaseCenteredSupportedTypes, ct::BaseCentered)
     primitive_vectors = MMatrix{3,3}([1.0 1.0 0.0; 1.0 -1.0 0.0; 0.0  0.0  1.0])
-    primitive_vectors .*= transpose(cf.lattice_constants)
+    primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     return primitive_vectors
 end
 
 function get_primitive_vectors(cf::CrystalFamily{2}, ct::Primitive)
     primitive_vectors = MMatrix{2,2}([1.0 0.0; 0.0 1.0])
-    primitive_vectors .*= transpose(cf.lattice_constants)
+    primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     
     if hasfield(cf, lattice_angle)
         β = cf.lattice_angle - 90u"°"
@@ -172,7 +173,7 @@ end
 
 function get_primitive_vectors(cf::Rectangular, ct::Centered)
     primitive_vectors = MMatrix{2,2}([0.5 0.5; 0.5 -0.5])
-    primitive_vectors .*= transpose(cf.lattice_constants)
+    primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     return primitive_vectors
 end
 

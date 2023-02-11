@@ -4,15 +4,11 @@ export
     BCC
 
 
-struct Crystal{D,L}
+struct Crystal{D, B <: AbstractVector{<:Atom{D}}}
     lattice::BravaisLattice{D}
-    basis::SVector{Atom}
-    length_unit::L
+    basis::B
 end
 
-function Crystal(lattice, basis)
-
-end
 
 # 3D version
 function get_lattice_points(lattice::BravaisLattice{3}, N::SVector{3})
@@ -70,27 +66,19 @@ function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
 end
 
 
-# #Implement common crystal structures
-# struct FCC <: Crystal
-#     lattice::BravaisLattice{D}
-#     basis::SVector{BasisAtom{D}}
-# end
-
 #Monoatomic FCC
 
-function FCC(a, atom::Atom)
+function FCC(a, atomic_symbol::Symbol; charge = 0.0u"C")
     lattice = BravaisLattice(Cubic(a), FaceCentered())
-    basis = SVector(Atom(atom, SVector(zero(a),zero(a),zero(a))))
-    return Crystal{3}(lattice, basis)
+    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)),charge = 0.0u"C")]
+    return Crystal(lattice, basis)
 end
 
-# struct BCC <: Crystal
-    
-# end
 
-function BCC(a, atom::Atom)
+
+function BCC(a, atomic_symbol::Symbol; charge = 0.0u"C")
     lattice = BravaisLattice(Cubic(a), BodyCentered())
-    basis = SVector(atom)
+    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)),charge = 0.0u"C")]
     return Crystal{3}(lattice,basis)
 end
 
