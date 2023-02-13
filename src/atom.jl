@@ -11,7 +11,7 @@ struct Atom{D,C,M}
     mass::M
 end
 
-function Atom(sym, position; charge =0.0u"C", mass = periodic_table[sym].atomic_mass)
+function Atom(sym::Symbol, position; charge =0.0u"C", mass = periodic_table[sym].atomic_mass)
     return Atom{length(position),typeof(charge),typeof(mass)}(sym, position, charge, mass)
 end
 

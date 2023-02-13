@@ -1,7 +1,8 @@
 
 export
     FCC,
-    BCC
+    BCC,
+    replicate_unit_cell
 
 
 struct Crystal{D, B <: AbstractVector{<:Atom{D}}}
@@ -11,10 +12,22 @@ end
 
 #Returns R = n1*a1 + n2*a2 + n3*a3, where a are the primitive lattice vectors
     #This will just be a lattice point, does not account for basis
-function Base.getindex(crystal::Crystal{D}, indices::Vararg{Integer,D})
-    return sum(indices .* crystal.lattice.primitive_vectors, dims = 1)
+function Base.getindex(crystal::Crystal{D}, indices::Vararg{Integer,D}) where D
+    return SVector{D}(sum(indices .* crystal.lattice.primitive_vectors, dims = 1))
 end
 
+function get_1d_index(i, N::SVector{D}) where D
+    if D == 3
+        z = i ÷ (N[1] * N[2])
+        i -= (z * N[1] * N[2])
+        y = i ÷ N[1]
+        x = i % N[1]
+        return x, y, z
+    elseif D == 2
+        x = i % N[1]
+        y = i ÷ N[1]
+    end
+end
 
 
 # # 3D version
@@ -58,16 +71,14 @@ function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
     N_atoms = prod(N) * length(crystal.basis)
 
     #Create flat arrays for atoms & coords
-    atoms = SVector{N_atoms,Atom{D}}
+    atoms = MVector{N_atoms,typeof(crystal.basis[1])}
 
     #Superimpose basis onto lattice points
-    for i in range(N_atoms)
-        n1 = 
-        n2 =
-        n3 =
+    @inbounds for i in range(0,N_atoms-1)
+        n = get_1d_index(i, N)
         lattice_pt = crystal[n...]
-        for basis_atom in crystal.basis         
-            atoms[i] = Atom(basis_atom, lp .+ basis_atom.position)
+        for basis_atom in crystal.basis
+            atoms[i] = Atom(basis_atom, lattice_pt .+ basis_atom.position)
         end
     end
 
