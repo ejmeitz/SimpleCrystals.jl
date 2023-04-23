@@ -1,5 +1,5 @@
 function to_xyz(crystal::Crystal{D}, N::SVector{D}, outpath)
-    atoms = replicate_unit_cell(crystal::Crystal{D}, N::SVector{D})
+    atoms = replicate_unit_cell(crystal, N)
     
     file = open(outpath, "w")
     println(file,string(length(atoms)))
