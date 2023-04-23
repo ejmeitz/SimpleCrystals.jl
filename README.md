@@ -11,12 +11,12 @@
 The functions to generate basic monoatomic crystal structures (i.e. fcc, bcc) are already implemented and require no customization.
 
 ##### Monoatomic FCC
-Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. For FCC only the lattice parameter and element type are needed. SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). The code below creates an FCC crystal of Carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions.
+Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. For FCC only the lattice parameter and element type are needed. SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions.
 
 ```julia
 a = 0.54u"nm"
 element = :C
-fcc_crystal = FCC(0.54u"nm", element)
+fcc_crystal = FCC(a, element)
 atoms = replicate_unit_cell(fcc_crystal, SVector(4,4,4))
 ```
 
