@@ -1,4 +1,4 @@
-function to_xyz(crystal::Crystal{D}, N::SVector{D}, outpath)
+function to_xyz(crystal::Crystal{D}, N::SVector{D}, outpath) where D
     atoms = replicate_unit_cell(crystal, N)
     
     file = open(outpath, "w")
