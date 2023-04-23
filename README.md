@@ -20,4 +20,4 @@ fcc_crystal = FCC(0.54u"nm", element)
 atoms = replicate_unit_cell(fcc_crystal, SVector(4,4,4))
 ```
 
-![Monoatomic FCC](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png){: style="float: right"}
+![Monoatomic FCC](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png)
