@@ -1,6 +1,6 @@
 # SimpleCrystals.jl
 
-[![CI](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl/branch/main)](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl)
+[![Build Status](https://ci.appveyor.com/api/projects/status/kd016pcm9epk1xk9?svg=true)](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl)
 <!-- [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest) -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
