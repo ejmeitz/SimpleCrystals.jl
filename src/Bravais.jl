@@ -67,6 +67,7 @@ end
 
 Monoclinic(a, b, c, β) = Monoclinic{typeof(a),typeof(β)}(SVector(a,b,c), SVector(90u"°", β, 90u"°"))
 
+# 2D equivalent
 struct Oblique{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
     lattice_angle::LA
@@ -123,7 +124,7 @@ function get_primitive_vectors(cf::CrystalFamily{3}, ct::Primitive)
     primitive_vectors = MMatrix{3,3}([1.0 0.0 0.0; 0.0 1.0 0.0; 0.0 0.0 1.0])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
 
-    if hasfield(cf, lattice_angles)
+    if hasfield(typeof(cf), :lattice_angles)
         #rotate a-axis
         rotateAboutB!(view(primitive_vectors,1,:), 90u"°" - cf.lattice_angles[2])
         rotateAboutC!(view(primitive_vectors,1,:), 90u"°" - cf.lattice_angles[3])
@@ -142,7 +143,6 @@ FaceCenteredSupportedTypes = Union{Cubic, Orthorhombic}
 function get_primitive_vectors(cf::FaceCenteredSupportedTypes, ct::FaceCentered)
     primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0]) 
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
-    print(primitive_vectors)
     return primitive_vectors
 end
 
@@ -164,7 +164,7 @@ function get_primitive_vectors(cf::CrystalFamily{2}, ct::Primitive)
     primitive_vectors = MMatrix{2,2}([1.0 0.0; 0.0 1.0])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     
-    if hasfield(cf, lattice_angle)
+    if hasfield(typeof(cf), :lattice_angle)
         β = cf.lattice_angle - 90u"°"
         primitive_vectors[2,:] = [cos(β) -sin(β); sin(β)  cos(β)] * primitive_vectors[2,:]
     end
