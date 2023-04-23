@@ -1,4 +1,5 @@
 name = "SimpleCrystals"
+uuid = "64031d72-e220-11ed-1a7e-43a2532b2fa8"
 authors = ["Ethan Meitz <emeitz@andrew.cmu.edu>"]
 version = "0.1.0"
 
