@@ -1,5 +1,6 @@
 # SimpleCrystals.jl
 
+[![CI](https://ci.appveyor.com/project/ejmeitz/SimpleCrystals.jl/branch/master)]()
 [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/blob/master/LICENSE.md)
 
