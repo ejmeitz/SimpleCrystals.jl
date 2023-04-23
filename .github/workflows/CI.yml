@@ -24,9 +24,7 @@ jobs:
           - macOS-latest
         arch:
           - x64
-        test:
-          - NotZygote
-          - Zygote
+
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
@@ -67,8 +65,8 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: doctest
-            using Molly
-            doctest(Molly)'
+            using SimpleCrystals
+            doctest(SimpleCrystals)'
       - run: julia --project=docs docs/make.jl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
