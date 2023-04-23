@@ -10,5 +10,6 @@ using PeriodicTable
 include("atom.jl")
 include("bravais.jl")
 include("crystals.jl")
+include("file_writer.jl")
 
 end
