@@ -29,6 +29,10 @@ function BravaisLattice(cf::CrystalFamily{D}, ct::CenteringType) where D
     return BravaisLattice{D}(cf, ct, p_vec)
 end
 
+# function BravaisLattice(cf::CrystalFamily{D}, ct::CenteringType, p_vec:: MMatrix{3,3})
+#     return
+# end
+
 #####################################################
 
 struct Cubic{LC} <: CrystalFamily{3}
@@ -73,7 +77,7 @@ struct Oblique{LC,LA} <: CrystalFamily{2}
     lattice_angle::LA
 end
 
-Oblique(a, b, θ) = Monoclinic{typeof(a),typeof(θ)}(SVector(a,b), θ)
+Oblique(a, b, θ) = Oblique{typeof(a),typeof(θ)}(SVector(a,b), θ)
 #####################################################
 
 struct Triclinic{LC,LA} <: CrystalFamily{3}
@@ -109,14 +113,14 @@ struct Hexagonal{LC,LA} <: CrystalFamily{3}
     lattice_angles::SVector{3,LA}
 end
 
-Hexagonal(a,c) = Hexagonal{typeof(a),typeof(γ)}(SVector(a,a,c),SVector(90u"°", 90u"°", 120u"°"))
+Hexagonal(a,c) = Hexagonal{typeof(a),typeof(90u"°")}(SVector(a,a,c),SVector(90u"°", 90u"°", 120u"°"))
 
 struct Hexagonal2D{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
     lattice_angle::LA
 end
 
-Hexagonal2D(a) = Hexagonal2D{typeof(a)}(SVector(a,a), 120u"°")
+Hexagonal2D(a) = Hexagonal2D{typeof(a),typeof(120u"°")}(SVector(a,a), 120u"°")
 
 #####################################################
 
@@ -125,15 +129,12 @@ function get_primitive_vectors(cf::CrystalFamily{3}, ct::Primitive)
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
 
     if hasfield(typeof(cf), :lattice_angles)
-        #rotate a-axis
-        rotateAboutB!(view(primitive_vectors,1,:), 90u"°" - cf.lattice_angles[2])
-        rotateAboutC!(view(primitive_vectors,1,:), 90u"°" - cf.lattice_angles[3])
-        #rotate b-axis
-        rotateAboutA!(view(primitive_vectors,2,:) ,90u"°" - cf.lattice_angles[1])
+        # Set α
+        rotateAboutB!(view(primitive_vectors,3,:), 90u"°" - cf.lattice_angles[1])
+        # Set β
+        rotateAboutA!(view(primitive_vectors,3,:), 90u"°" - cf.lattice_angles[2])
+        # Set γ
         rotateAboutC!(view(primitive_vectors,2,:), 90u"°" - cf.lattice_angles[3])
-        #rotate c-axis
-        rotateAboutA!(view(primitive_vectors,3,:), 90u"°" - cf.lattice_angles[1])
-        rotateAboutB!(view(primitive_vectors,3,:), 90u"°" - cf.lattice_angles[2])
     end
 
     return primitive_vectors
