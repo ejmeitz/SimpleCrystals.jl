@@ -7,7 +7,7 @@ using PeriodicTable
 @reexport using Unitful
 @reexport using StaticArrays
 
-include("Atom.jl")
+include("atom.jl")
 include("Bravais.jl")
 include("Crystals.jl")
 include("FileWriter.jl")
