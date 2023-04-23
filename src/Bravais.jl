@@ -29,9 +29,6 @@ function BravaisLattice(cf::CrystalFamily{D}, ct::CenteringType) where D
     return BravaisLattice{D}(cf, ct, p_vec)
 end
 
-# function BravaisLattice(cf::CrystalFamily{D}, ct::CenteringType, p_vec:: MMatrix{3,3})
-#     return
-# end
 
 #####################################################
 
