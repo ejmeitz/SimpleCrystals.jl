@@ -12,7 +12,9 @@
 The functions to generate basic monoatomic crystal structures (i.e. fcc, bcc) are already implemented and require no customization.
 
 ##### Monoatomic Bravais Lattices:
-Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. For FCC only the lattice parameter and element type are needed. SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions.
+Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. A trinclinic boundary will work for the remaining lattices.
+
+ For FCC only the lattice parameter and element type are needed. SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions.
 
 ```julia
 a = 0.54u"nm"
@@ -22,8 +24,26 @@ atoms = replicate_unit_cell(fcc_crystal, SVector(4,4,4))
 ```
 
 #### User Defined Crystal Structures
-The SimpleCrystals API is not exhaustive, but provides an interface to create more complex, polyatomic crystals. For example NaCl
+The SimpleCrystals API is not exhaustive, but provides an interface to create more complex, polyatomic crystals. For example, the Diamond crystal structure (which is a part of the API) is defined as simple cubic bravais lattice with an 8 atom basis. Diamond is more naturally thought of as an FCC lattice with a 2 atom basis, but that would require a triclinic boundary.
 
+The code below defines the BravaisLattice() object as a primitive, cubic lattice (simple cubic) with lattice parameter a. Then the basis is constructed as a list of Atom() objects. In this example, each basis atom is the same element but that could easily be changed. Finally, the Crystal() object is constructed from the BravaisLattice object and list of basis atoms.
+
+```julia
+function Diamond(a, atomic_symbol::Symbol; charge = 0.0u"C")
+    lattice = BravaisLattice(Cubic(a), Primitive())
+    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
+             Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge),
+             Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
+             Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
+             Atom(atomic_symbol, SVector(0.25*a, 0.25*a, 0.25*a), charge = charge),
+             Atom(atomic_symbol, SVector(0.25*a, 0.75*a, 0.75*a), charge = charge),
+             Atom(atomic_symbol, SVector(0.75*a, 0.25*a, 0.75*a), charge = charge),
+             Atom(atomic_symbol, SVector(0.75*a, 0.75*a, 0.25*a), charge = charge)]
+    return Crystal(lattice,basis)
+end
+```
+
+Similarly, we can create NaCl which is
 
 
 
@@ -31,13 +51,13 @@ The SimpleCrystals API is not exhaustive, but provides an interface to create mo
 <table>
     <tr>
         <td>Crystal Family</td>
-        <td>Primitive</td>
-        <td>Base Centered</td>
-        <td>Body Centered</td>
-        <td>Face Centered</td>
+        <td align="center">Primitive</td>
+        <td align="center">Base Centered</td>
+        <td align="center">Body Centered</td>
+        <td align="center">Face Centered</td>
     </tr>
     <tr>
-        <td>Cubic</td>
+        <td >Cubic</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
@@ -76,18 +96,17 @@ The SimpleCrystals API is not exhaustive, but provides an interface to create mo
 
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API, but other non-bravais crystals can be created. 
+<table>
+    <tr>
+        <td align="center">Diamond</td>
+        <td align="center">HCP</td>
+    </tr>
+    <tr>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_diamond.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_hcp.png" alt="2" width = 160px height = 120px> </td>
+    </tr>
+</table>
 
-BCC:
-![BCC]((https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_bcc.png)
-Diamond:
-![Monoatomic Diamond](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_diamond.png)
-
-Some crystals are not cubic and require a triclinic domain to properly replicate a unit cell, for example rhombohedral and HCP.
-
-HCP:
-![Monoatomic HCP](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_hcp.png)
-Rhombohedral:
-![Monoatomic Rhombohedral](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_rhomb.png)
 
 #### 2D Bravais Lattices
 
