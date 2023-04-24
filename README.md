@@ -130,7 +130,6 @@ All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <td>Hexagonal</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
-
     </tr>
 
 </table>
