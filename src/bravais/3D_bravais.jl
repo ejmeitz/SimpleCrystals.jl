@@ -1,6 +1,10 @@
 export
     SC, FCC, BCC,
-    Rhombohedral
+    Triclinic,
+    Monoclinic, MonoclinicBaseCentered,
+    Orthorhombic,OrthorhombicBaseCentered, OrthorhombicBodyCentered, OrthorhombicFaceCentered,
+    Tetragonal, TetragonalBodyCentered,
+    Rhombohedral, Hexagonal
 
 #############
 ### Cubic ###
