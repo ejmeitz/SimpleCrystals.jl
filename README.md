@@ -147,3 +147,9 @@ All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [
 
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
+<table>
+    <th align="center">Honeycomb</th>
+    <tr>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+    </tr>
+</table>
