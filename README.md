@@ -28,20 +28,7 @@ The SimpleCrystals API is not exhaustive, but provides an interface to create mo
 
 The code below defines the BravaisLattice() object as a primitive, cubic lattice (simple cubic) with lattice parameter `a`. Then the basis is constructed as a list of Atom() objects. In this example, each basis atom is the same element but that could easily be changed. Finally, the Crystal() object is constructed from the BravaisLattice object and the list of basis atoms.
 
-```julia
-function Diamond(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(0.25*a, 0.25*a, 0.25*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.25*a, 0.75*a, 0.75*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.75*a, 0.25*a, 0.75*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.75*a, 0.75*a, 0.25*a), charge = charge)]
-    return Crystal(lattice,basis)
-end
-```
+https://github.com/ejmeitz/SimpleCrystals.jl/blob/0ccc3f28e81d2c0aa5087039a52e94038520bad4/src/Crystals.jl#L99-L110
 
 Similarly, we can create NaCl which is
 
