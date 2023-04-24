@@ -1,6 +1,7 @@
 export
     Diamond,
     HCP
+    
 # This implementation of diamond uses a cubic conventional cell so that a
 # cubic simulation cell can be used.
 
