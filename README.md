@@ -45,42 +45,42 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <th align="center">Face Centered</th>
     </tr>
     <tr>
-        <td >Cubic<br>a = b = c<br>&alpha; = &beta; = &gamma; = 90&#176</td>
+        <td align="center">Cubic<br>a = b = c<br>&alpha; = &beta; = &gamma; = 90&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
-        <td>Monoclinic<br>&alpha; = &gamma; = 90&#176</td>
+        <td align="center">Monoclinic<br>a &#8800; b &#8800; c<br>&alpha; = &gamma; = 90&#176, &beta;</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"></td>
     </tr>
     <tr>
-        <td>Orthorhombic</td>
+        <td align="center">Orthorhombic<br>a &#8800; b &#8800; c<br>&alpha; &#8800; &beta; &#8800; &gamma;</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_bcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
-        <td>Tetragonal</td>
+        <td align="center">Tetragonal</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"></td>
     </tr>
     <tr>
-        <td>Hexagonal (Rhombohedral)</td>
+        <td align="center">Hexagonal (Rhombohedral)</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_rhomb.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
     </tr>
       <tr>
-        <td>Hexagonal (Rhombohedral)</td>
+        <td align="center">Hexagonal (Rhombohedral)</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"></td>
