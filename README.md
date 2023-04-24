@@ -86,20 +86,18 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <td align="center"></td>
     </tr>
     <tr>
-        <td rowspan="2">Hexagonal
-        <tr>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
-        </tr>
-        <tr>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
-            <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
-        </tr>
-        </td>
+        <td>Hexagonal (Rhombohedral)</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_rhomb.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+    </tr>
+      <tr>
+        <td>Hexagonal (Rhombohedral)</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
     </tr>
 
 </table>
@@ -119,6 +117,37 @@ Diamond and HCP are also implemented as part of the API, but other non-bravais c
 
 
 #### 2D Bravais Lattices
+All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
+<table>
+    <tr>
+        <th>Crystal Family</th>
+        <th align="center">Primitive</th>
+        <th align="center">Centered</th>
+    </tr>
+    <tr>
+        <td >Monoclinic</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"></td>
+    </tr>
+    <tr>
+        <td>Orthorhombic</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+    </tr>
+    <tr>
+        <td>Tetragonal</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"></td>
+    </tr>
+    <tr>
+        <td>Hexagonal</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"></td>
+
+    </tr>
+
+</table>
+
 
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
