@@ -1,7 +1,7 @@
 export to_xyz
 
 function to_xyz(crystal::Crystal{3}, N::SVector{3}, outpath)
-    atoms = replicate_unit_cell(crystal, N)
+    atoms = get_coordinates(crystal, N)
     
     file = open(outpath, "w")
     println(file,string(length(atoms)))
@@ -13,7 +13,7 @@ function to_xyz(crystal::Crystal{3}, N::SVector{3}, outpath)
 end
 
 function to_xyz(crystal::Crystal{2}, N::SVector{2}, outpath)
-    atoms = replicate_unit_cell(crystal, N)
+    atoms = get_coordinates(crystal, N)
     
     file = open(outpath, "w")
     println(file,string(length(atoms)))
