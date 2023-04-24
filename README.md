@@ -20,7 +20,6 @@ element = :C
 fcc_crystal = FCC(a, element)
 atoms = replicate_unit_cell(fcc_crystal, SVector(4,4,4))
 ```
-<img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="Monoatomic FCC" width = 320px height = 240px>
 
 #### User Defined Crystal Structures
 The SimpleCrystals API is not exhaustive, but provides an interface to create more complex, polyatomic crystals. For example NaCl
@@ -39,38 +38,38 @@ The SimpleCrystals API is not exhaustive, but provides an interface to create mo
     </tr>
     <tr>
         <td>Cubic</td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
         <td>Monoclinic</td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
         <td>Orthorhombic</td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
         <td>Tetragonal</td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
         <td>Hexagonal</td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
-        <td> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 50px height = 32px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
 
 </table>
