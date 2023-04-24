@@ -20,7 +20,7 @@ Whenever possible crystals are implemented using a conventional unit cell so tha
 a = 0.54u"nm"
 element = :C
 fcc_crystal = FCC(a, element)
-atoms = replicate_unit_cell(fcc_crystal, SVector(4,4,4))
+atoms = get_coordinates(fcc_crystal, SVector(4,4,4))
 ```
 
 #### User Defined Crystal Structures

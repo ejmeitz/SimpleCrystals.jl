@@ -1,13 +1,6 @@
 
 export
-    SC,
-    FCC,
-    BCC,
-    Diamond,
-    HCP,
-    Honeycomb,
-    Rhombohedral,
-    replicate_unit_cell
+    get_coordinates
 
 
 struct Crystal{D, B <: AbstractVector{<:Atom{D}}}
@@ -40,7 +33,7 @@ function convert_1d_index(i, N::SVector{2})
 end
 
 # Generates coordinates for 'crystal' from R = n1*a1 + n2*a2 + n3*a3 + basis
-function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
+function get_coordinates(crystal::Crystal{D}, N::SVector{D}) where D
     @assert all(N .> 0) "Number of unit cells should be greater than 0"
 
     #Probably a way to get LP an not allocate all this memory
@@ -61,81 +54,4 @@ function replicate_unit_cell(crystal::Crystal{D}, N::SVector{D}) where D
     end
 
     return atoms
-end
-
-#######################################################
-### Monoatomic Examples with Conventional Unit Cell ###
-#######################################################
-# All the strucrtures below use the conventional cell as this is the only way
-# to pattern a cubic domain completely. This is consistent with the LAMMPS implementation.
-# See https://github.com/lammps/lammps/blob/develop/src/lattice.cpp (85-116)
-
-# Monoatomic SC -- 1 Atom Basis with SC Lattice Points
-function SC(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a), zero(a), zero(a)), charge = charge)]
-    return Crystal(lattice,basis)
-end
-
-# Monoatomic FCC -- 4 Atom Basis with SC Lattice Points
-function FCC(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
-    return Crystal(lattice, basis)
-end
-
-# Monoatomic BCC -- 2 Atom Basis with SC Lattice Points
-function BCC(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, 0.5*a, 0.5*a), charge = charge)]
-    return Crystal(lattice,basis)
-end
-
-# Monoatomic Diamond -- 8 Atom Basis with SC Lattice Points
-function Diamond(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(0.25*a, 0.25*a, 0.25*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.25*a, 0.75*a, 0.75*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.75*a, 0.25*a, 0.75*a), charge = charge),
-             Atom(atomic_symbol, SVector(0.75*a, 0.75*a, 0.25*a), charge = charge)]
-    return Crystal(lattice,basis)
-end
-
-###########################################################
-# These crystals requrie a triclinc domain when building  #
-# a simulation box for molecular dynamics                 #
-###########################################################
-
-# Hexagonal 2D Lattice -- 2 atom basis
-function Honeycomb(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    d = a*sqrt(3)
-    lattice = BravaisLattice(Hexagonal2D(a*sqrt(3)), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*d, 0.5*a), charge = charge),]
-    return Crystal(lattice,basis)
-end
-
-# Hexagonal Lattice with a = c -- 2 atom basis
-function HCP(a, atomic_symbol::Symbol; charge = 0.0u"C")
-    c = a*sqrt(8/3)
-    lattice = BravaisLattice(Hexagonal(a,c), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(0.5*a, a/(2*sqrt(3)), 0.5*c), charge = charge)]
-    return Crystal(lattice,basis)
-end
-
-# Rhombohedral lattice -- 1 atom basis
-# Simple cubic with α not equal to 90
-function Rhombohedral(a, α, atomic_symbol::Symbol; charge = 0.0u"C")
-    lattice = BravaisLattice(Rhombohedral(a, α), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
-    return Crystal(lattice,basis)
 end
