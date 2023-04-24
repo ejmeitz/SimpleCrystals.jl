@@ -30,8 +30,18 @@ The code below defines the BravaisLattice() object as a primitive, cubic lattice
 
 https://github.com/ejmeitz/SimpleCrystals.jl/blob/0ccc3f28e81d2c0aa5087039a52e94038520bad4/src/Crystals.jl#L99-L110
 
-Similarly, we can create NaCl which is
+Similarly, we can create NaCl (not in the API) which can be thought of as two intertwined FCC lattices or a simple cubic lattice with a two atom basis.
 
+Intertwined FCC:
+```julia
+a = 1.126u"nm"
+```
+2-Atom Basis SC:
+```julia
+a = 0.563u"nm" #half the lattice parameter of FCC example
+```
+Both methods yield the same list of coordinates
+![NaCl Crystal]()
 
 
 #### 3D Bravais Lattices
