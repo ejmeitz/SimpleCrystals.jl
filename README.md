@@ -1,10 +1,16 @@
 # SimpleCrystals.jl
 
-[![CI](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl/branch/main)](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl)
-<!-- [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest) -->
+[![Build Status](https://ci.appveyor.com/api/projects/status/kd016pcm9epk1xk9?svg=true)](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<!-- [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
+[![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaMolSim.github.io/Molly.jl/stable)-->
 
+<<<<<<< HEAD
  An interface for creating crystal geometries for molecular simulation. This package implements all monoatomic 3D and 2D Bravais lattices and enables to user to define a custom basis to create polyatomic Bravais lattice's or to create non-Bravais lattice structures.
+=======
+
+ An interface for creating crystal geometries for molecular simulation. This package is not intended to provide a exhaustive system for generating all types of crstyals. The main goal is to enable users to rapidly generate atomic coordinates for common crystal structures like FCC and BCC without much effort.
+>>>>>>> 964af098bb0af574d6f07d39e4c8ec97b7171648
 
  ### Examples
 
