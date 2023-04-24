@@ -24,7 +24,7 @@ atoms = get_coordinates(fcc_crystal, SVector(4,4,4))
 ```
 
 #### User Defined Crystal Structures
-The SimpleCrystals API is not exhaustive, but provides an interface to create more non-bravais crystals and polyatomic crystals. For example, the Diamond crystal structure (which is a part of the API) is defined as simple cubic Bravais lattice with an 8 atom basis. Diamond is more naturally thought of as an FCC lattice with a 2 atom basis, but that would require a triclinic boundary.
+The SimpleCrystals API is not exhaustive, but provides an interface to create non-bravais crystals and polyatomic crystals. For example, the Diamond crystal structure (which is a part of the API) is defined as simple cubic Bravais lattice with an 8 atom basis. Diamond is more naturally thought of as an FCC lattice with a 2 atom basis, but that would require a triclinic boundary.
 
 The code below defines the BravaisLattice() object as a primitive, cubic lattice (simple cubic) with lattice parameter `a`. Then the basis is constructed as a list of Atom() objects. In this example, each basis atom is the same element but that could easily be changed. Finally, the Crystal() object is constructed from the BravaisLattice object and the list of basis atoms.
 
@@ -60,6 +60,13 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <td align="center"></td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+    </tr>
+    <tr>
+        <td align="center"><strong>Triclinic</strong><br>a &#8800; b &#8800; c<br>&alpha; &#8800; &beta; &#8800; &gamma;</td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
     </tr>
     <tr>
         <td align="center"><strong>Monoclinic</strong><br>a &#8800; b &#8800; c<br>&alpha; = &gamma; = 90&#176, &beta;</td>
@@ -100,7 +107,7 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
 </table>
 
 #### Other 3D Structrues
-Diamond and HCP are also implemented as part of the API, but other non-bravais crystals can be created. 
+Diamond and HCP are also implemented as part of the API: 
 <table>
     <tr>
         <td align="center">Diamond</td>
