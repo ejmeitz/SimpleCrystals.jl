@@ -59,28 +59,28 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <td align="center"></td>
     </tr>
     <tr>
-        <td align="center">Orthorhombic<br>a &#8800; b &#8800; c<br>&alpha; = &beta; = &gamma; = 90&#176</td>
+        <td align="center"><strong>Orthorhombic</strong><br>a &#8800; b &#8800; c<br>&alpha; = &beta; = &gamma; = 90&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_bcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
-        <td align="center">Tetragonal</td>
+        <td align="center"><strong>Tetragonal</strong><br>a = b &#8800; c<br> &alpha; = &beta; = &gamma; = 90&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"></td>
     </tr>
     <tr>
-        <td align="center">Hexagonal (Rhombohedral)</td>
+        <td align="center"><strong>Hexagonal (Rhombohedral)</strong><br>a = b = c<br>&alpha; = &beta; = &gamma;</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_rhomb.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
     </tr>
       <tr>
-        <td align="center">Hexagonal (Rhombohedral)</td>
+        <td align="center"><strong>Hexagonal</strong><br>a = b &#8800; c<br>&alpha; = &beta; = 90&#176, &gamma; = 120&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"></td>
