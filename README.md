@@ -5,7 +5,7 @@
 <!-- [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
 [![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaMolSim.github.io/Molly.jl/stable)-->
 
- An interface for creating crystal geometries for molecular simulation. This package implements all monoatomic 3D and 2D Bravais lattices and enables to user to define a custom basis to create polyatomic Bravais lattice's or to create non-Bravais lattice structures.
+ An interface for creating crystal geometries for molecular simulation. This package implements all monoatomic 3D and 2D Bravais lattices and enables to user to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures.
 
  ### Examples
 
@@ -20,7 +20,7 @@ element = :C
 fcc_crystal = FCC(a, element)
 atoms = replicate_unit_cell(fcc_crystal, SVector(4,4,4))
 ```
-![Monoatomic FCC](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png)
+<img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="Monoatomic FCC" width = 320px height = 240px>
 
 #### User Defined Crystal Structures
 The SimpleCrystals API is not exhaustive, but provides an interface to create more complex, polyatomic crystals. For example NaCl
