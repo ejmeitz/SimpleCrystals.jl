@@ -187,14 +187,14 @@ Both methods yield the same structure with periodic boundary conditions, but the
 
 #### File I/O
 
-Using one of the built-in crystal objects (e.g. FCC) or a user-defined crystal you can call the `to_xyz()` function to print out a .xyz file with a chosen number of unit cells. For example, to get the coordinates for 4 unit-cells in the x, y and z for FCC you could use the following code:
+Using one of the built-in crystal objects (e.g. FCC) or a user-defined crystal you can call the `to_xyz()` function to print out a .xyz file with a chosen number of unit cells. For example, to get the coordinates for 4 unit-cells in the x, y and z directions for FCC you could use the following code:
 
 ```julia
 fcc_crystal = FCC(a, :C)
 to_xyz(fcc_crystal, SVector(4,4,4), raw"C:\Users\ejmei\Desktop\positions_fcc.xyz")
 ```
 
-To get the list of atoms in code you can use the `get_coordinates()` function. The code below will return an array the array of atoms that the to_xyz() function builds internally.
+To get the list of atoms in code you can use the `get_coordinates()` function. The code below will return the array of atoms that the to_xyz() function builds internally.
 
 ```julia
 fcc_crystal = FCC(a, :C)
