@@ -22,7 +22,7 @@ atoms = get_coordinates(fcc_crystal, SVector(4,4,4))
 ```
 
 #### 3D Bravais Lattices
-All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily.
+All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily in OVITO.
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -146,7 +146,7 @@ The code below defines the BravaisLattice() object as a primitive, cubic lattice
 
 https://github.com/ejmeitz/SimpleCrystals.jl/blob/0ccc3f28e81d2c0aa5087039a52e94038520bad4/src/Crystals.jl#L99-L110
 
-Similarly, we can create NaCl (not in the API) which can be thought of as two intertwined FCC lattices or a simple cubic lattice with a two atom basis.
+Similarly, we can create NaCl (not in the API) which can be thought of as a simple cubic lattice with an 8 atom basis or two intertwined FCC lattices.
 
 2-Atom Basis SC:
 ```julia
