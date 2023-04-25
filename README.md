@@ -32,20 +32,46 @@ https://github.com/ejmeitz/SimpleCrystals.jl/blob/0ccc3f28e81d2c0aa5087039a52e94
 
 Similarly, we can create NaCl (not in the API) which can be thought of as two intertwined FCC lattices or a simple cubic lattice with a two atom basis.
 
-Intertwined FCC:
-```julia
-a = 1.126u"nm"
-```
 2-Atom Basis SC:
 ```julia
-a = 0.563u"nm" #half the lattice parameter of FCC example
+function NaCl1(a)
+    lattice = BravaisLattice(Cubic(a), Primitive())
+    basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
+             Atom(:Na, SVector(0.5*a,zero(a),0.5*a), charge = 1.0u"q"),
+             Atom(:Na, SVector(zero(a), 0.5*a, 0.5*a), charge = 1.0u"q"),
+             Atom(:Na, SVector(0.5*a,0.5*a,zero(a)), charge = 1.0u"q"),
+             Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q"),
+             Atom(:Cl, SVector(zero(a), 0.5*a, zero(a)), charge = -1.0u"q"),
+             Atom(:Cl, SVector(zero(a),zero(a),0.5*a), charge = -1.0u"q"),
+             Atom(:Cl, SVector(0.5*a, 0.5*a, 0.5*a), charge = -1.0u"q")]
+    return Crystal(lattice,basis)
+end
 ```
-Both methods yield the same list of coordinates
-![NaCl Crystal]()
+Intertwined FCC:
+```julia
+function NaCl2(a)
+    lattice = BravaisLattice(Cubic(a), FaceCentered())
+    basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
+             Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q")]
+    return Crystal(lattice,basis)
+end
+```
+
+Both methods yield the same structure with periodic boundary conditions, but the first function uses a conventional cell so the result is much easier to see and create a simulation box for. Whenever possible use a conventional cell (simple cubic lattice). Note that to use both of these functions the lattice parameter a is the distance between Na atoms (or Cl atoms) not the Na-Cl distance as the basis places the atoms at the proper 0.5*a spacing.
+<table>
+<tr>
+    <th>Conventional Cell</th>
+    <th>FCC Unit Cell</th>
+</tr>
+<tr>
+    <td><td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px></td><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
+    <td></td>
+</tr>
+</table>
 
 
 #### 3D Bravais Lattices
-All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
+All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily.
 <table>
     <tr>
         <th>Crystal Family</th>

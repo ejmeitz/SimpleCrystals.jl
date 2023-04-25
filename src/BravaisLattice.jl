@@ -1,5 +1,8 @@
 export
-    Crystal
+    Crystal, BravaisLattice,
+    Cubic, Square, Orthorhombic, Rectangular, Monoclinic, Oblique, Triclinic, Tetragonal, Rhombohedral, Hexagonal, Hexagonal2D,
+    Primitive, FaceCentered, BodyCentered, BaseCentered, Centered
+    #some of the exported BravaisLattice's have the same name as the exported crystals, but they take different parameters
  
 #########
 # TYEPS #
