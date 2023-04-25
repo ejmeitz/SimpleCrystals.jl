@@ -5,11 +5,9 @@
 <!-- [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
 [![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaMolSim.github.io/Molly.jl/stable)-->
 
- An interface for creating crystal geometries for molecular simulation. This package implements all monoatomic 3D and 2D Bravais lattices and enables to user to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures.
+ An interface for creating crystal geometries for molecular simulation. This package implements all monoatomic 3D and 2D Bravais lattices (e.g. FCC & BCC) and enables to user to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures.
 
- ### Examples
 
-The functions to generate basic monoatomic crystal structures (i.e. fcc, bcc) are already implemented and require no customization.
 
 #### Monoatomic Bravais Lattices:
 Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. A trinclinic boundary will work for the remaining lattices.
