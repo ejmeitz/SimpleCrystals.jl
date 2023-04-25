@@ -19,7 +19,7 @@ end
 
 function RectangularCentered(a, b, atomic_symbol::Symbol; charge = 0.0u"C")
     lattice = BravaisLattice(Rectangular(a, b), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(b)), charge = charge),
+    basis = [Atom(atomic_symbol, SVector(zero(a), zero(b)), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, 0.5*b), charge = charge)]
     return Crystal(lattice,basis)
 end
