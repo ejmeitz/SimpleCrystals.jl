@@ -97,7 +97,7 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <td align="center"></td>
     </tr>
       <tr>
-        <td align="center"><strong>Hexagonal</strong><br>a = b &#8800; c<br>&alpha; = &beta; = 90&#176, &gamma; = 120&#176</td>
+        <td align="center"><strong>Hexagonal</strong><br>a, c<br>&alpha; = &beta; = 90&#176, &gamma; = 120&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_3d.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
         <td align="center"></td>
@@ -114,8 +114,8 @@ Diamond and HCP are also implemented as part of the API:
         <td align="center">HCP</td>
     </tr>
     <tr>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_diamond.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_hcp.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/diamond.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png" alt="2" width = 160px height = 120px> </td>
     </tr>
 </table>
 
@@ -129,22 +129,22 @@ All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [
         <th align="center">Centered</th>
     </tr>
     <tr>
-        <td >Monoclinic</td>
+        <td><strong>Monoclinic</strong><br>a &#8800; b<br>&theta; &#8800; 90&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/oblique.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
     </tr>
     <tr>
-        <td>Orthorhombic</td>
+        <td><strong>Orthorhombic</strong><br>a &#8800; b<br>&theta; = 90&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rect.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="2" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rect_centered.png" alt="2" width = 160px height = 120px> </td>
     </tr>
     <tr>
-        <td>Tetragonal</td>
+        <td><strong>Tetragonal</strong><br>a = b<br>&theta; = 90&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/square.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
     </tr>
     <tr>
-        <td>Hexagonal</td>
+        <td><strong>Hexagonal</strong><br>&theta; = 120&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_2d.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
     </tr>
@@ -157,7 +157,7 @@ The honeycomb lattice is the only 2D non-bravais lattice implemented as part of 
 <table>
     <th align="center">Honeycomb</th>
     <tr>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_fcc.png" alt="1" width = 160px height = 120px> </td>
+        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png" alt="1" width = 160px height = 120px> </td>
     </tr>
 </table>
 
