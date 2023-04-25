@@ -64,7 +64,7 @@ Both methods yield the same structure with periodic boundary conditions, but the
     <th align="center">FCC Unit Cell</th>
 </tr>
 <tr>
-    <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px><td>
+    <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px></td>
     <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
 </tr>
 </table>
