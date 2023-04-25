@@ -5,7 +5,6 @@ export
 # TYEPS #
 #########
 
-#abstract type Lattice end
 abstract type CrystalFamily{D} end
 abstract type CenteringType end
 
@@ -17,8 +16,7 @@ struct BaseCentered <: CenteringType end
 struct Centered <: CenteringType end #2D
 
 
-
-struct BravaisLattice{D}
+struct BravaisLattice{D} #D is dimension
     crystal_family::CrystalFamily{D}
     centering_type::CenteringType
     primitive_vectors::MMatrix{D,D}
