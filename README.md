@@ -60,12 +60,12 @@ end
 Both methods yield the same structure with periodic boundary conditions, but the first function uses a conventional cell so the result is much easier to see and create a simulation box for. Whenever possible use a conventional cell (simple cubic lattice). Note that to use both of these functions the lattice parameter a is the distance between Na atoms (or Cl atoms) not the Na-Cl distance as the basis places the atoms at the proper 0.5*a spacing.
 <table>
 <tr>
-    <th>Conventional Cell</th>
-    <th>FCC Unit Cell</th>
+    <th align="center">Conventional Cell</th>
+    <th align="center">FCC Unit Cell</th>
 </tr>
 <tr>
-    <td><td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px></td><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
-    <td></td>
+    <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px><td>
+    <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
 </tr>
 </table>
 
