@@ -187,7 +187,7 @@ Both methods yield the same structure with periodic boundary conditions, but the
 
 #### File I/O
 
-Using one of the built-in crystal types (e.g. FCC) you can call the `to_xyz()` function to print out a .xyz file with a chosen number of unit cells. For example, to get the coordinates for 4 unit-cells in the x, y and z for FCC you could use the following code:
+Using one of the built-in crystal objects (e.g. FCC) or a user-defined crystal you can call the `to_xyz()` function to print out a .xyz file with a chosen number of unit cells. For example, to get the coordinates for 4 unit-cells in the x, y and z for FCC you could use the following code:
 
 ```julia
 fcc_crystal = FCC(a, :C)
