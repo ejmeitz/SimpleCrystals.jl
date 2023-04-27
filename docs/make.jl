@@ -14,5 +14,6 @@ pages = [
 
 deploydocs(
     repo="github.com/ejmeitz/SimpleCrystals.jl.git",
-    push_preview = true
+    push_preview = true,
+    devbranch = "main"
 )
