@@ -3,7 +3,7 @@
 [![Build Status](https://ci.appveyor.com/api/projects/status/kd016pcm9epk1xk9?svg=true)](https://ci.appveyor.com/project/ejmeitz/simplecrystals-jl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
-[![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaMolSim.github.io/Molly.jl/stable)
+[![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://ejmeitz.github.io/SimpleCrystals.jl/stable/)
 
  SimpleCrystals.jl is an interface for creating crystal geometries for molecular simulation within Julia. SimpleCrystals implements all 3D and 2D Bravais lattices (e.g. FCC & BCC) and allows users to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures. The [AtomsBase](https://github.com/JuliaMolSim/AtomsBase.jl) interface is implemented to make use with other Julian molecular simulation software simple. There is no support for reading in crystal structures from other software (e.g. CIF files). SimpleCrystals is intended to provide a quick, lightweight method for generating atomic coordinates without leaving Julia.
 
@@ -23,6 +23,7 @@ atoms = get_coordinates(fcc_crystal, SVector(4,4,4))
 
 #### 3D Bravais Lattices
 All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily in OVITO.
+
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -85,6 +86,7 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
 
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API: 
+
 <table>
     <tr>
         <td align="center">Diamond</td>
@@ -99,6 +101,7 @@ Diamond and HCP are also implemented as part of the API:
 
 #### 2D Bravais Lattices
 All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
+
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -131,6 +134,7 @@ All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [
 
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
+
 <table>
     <th align="center">Honeycomb</th>
     <tr>
@@ -174,6 +178,7 @@ end
 ```
 
 Both methods yield the same structure with periodic boundary conditions, but the first function uses a conventional cell so the result is much easier to see and create a simulation box for. Whenever possible use a conventional cell (simple cubic lattice). Note that to use both of these functions the lattice parameter a is the distance between Na atoms (or Cl atoms) not the Na-Cl distance as the basis places the atoms at the proper 0.5*a spacing.
+
 <table>
 <tr>
     <th align="center">Conventional Cell</th>
