@@ -12,13 +12,13 @@
 #### Monoatomic Bravais Lattices:
 Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. A trinclinic boundary will work for the remaining lattices.
 
- For FCC only the lattice parameter and element type are needed. SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions.
+ SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). For example, The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions. The coordinates can be obtained in code with `get_coordinates()` or saved to a XYZ file with `to_xyz()`.
 
 ```julia
-a = 0.54u"nm"
-element = :C
-fcc_crystal = FCC(a, element)
-atoms = get_coordinates(fcc_crystal, SVector(4,4,4))
+a = 5.4u"Å"
+fcc_crystal = FCC(a, :C, SVector(4,4,4))
+atoms = get_coordinates(fcc_crystal)
+to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 ```
 
 #### 3D Bravais Lattices
@@ -154,7 +154,7 @@ Similarly, we can create NaCl (not in the API) which can be thought of as a simp
 
 2-Atom Basis SC:
 ```julia
-function NaCl1(a)
+function NaCl1(a, N::SVector{3})
     lattice = BravaisLattice(Cubic(a), Primitive())
     basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
              Atom(:Na, SVector(0.5*a,zero(a),0.5*a), charge = 1.0u"q"),
@@ -164,16 +164,16 @@ function NaCl1(a)
              Atom(:Cl, SVector(zero(a), 0.5*a, zero(a)), charge = -1.0u"q"),
              Atom(:Cl, SVector(zero(a),zero(a),0.5*a), charge = -1.0u"q"),
              Atom(:Cl, SVector(0.5*a, 0.5*a, 0.5*a), charge = -1.0u"q")]
-    return Crystal(lattice,basis)
+    return Crystal(lattice,basis,N)
 end
 ```
 Intertwined FCC:
 ```julia
-function NaCl2(a)
+function NaCl2(a, N::SVector{3})
     lattice = BravaisLattice(Cubic(a), FaceCentered())
     basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
              Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q")]
-    return Crystal(lattice,basis)
+    return Crystal(lattice,basis,N)
 end
 ```
 
@@ -195,13 +195,15 @@ Both methods yield the same structure with periodic boundary conditions, but the
 Using one of the built-in crystal objects (e.g. FCC) or a user-defined crystal you can call the `to_xyz()` function to print out a .xyz file with a chosen number of unit cells. For example, to get the coordinates for 4 unit-cells in the x, y and z directions for FCC you could use the following code:
 
 ```julia
-fcc_crystal = FCC(a, :C)
-to_xyz(fcc_crystal, SVector(4,4,4), raw"C:\Users\ejmei\Desktop\positions_fcc.xyz")
+a = 5.4u"Å"
+fcc_crystal = FCC(a, :C, SVector(4,4,4))
+to_xyz(fcc_crystal, raw"C:\Users\ejmei\Desktop\positions_fcc.xyz")
 ```
 
 To get the list of atoms in code you can use the `get_coordinates()` function. The code below will return the array of atoms that the to_xyz() function builds internally.
 
 ```julia
-fcc_crystal = FCC(a, :C)
-atoms = get_coordinates(fcc_crystal, SVector(4,4,4))
+a = 5.4u"Å"
+fcc_crystal = FCC(a, :C, SVector(4,4,4))
+atoms = get_coordinates(fcc_crystal)
 ```
