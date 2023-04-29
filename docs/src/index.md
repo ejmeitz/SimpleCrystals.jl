@@ -88,7 +88,7 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
 
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API: 
-
+```@raw html
 <table>
     <tr>
         <td align="center">Diamond</td>
@@ -99,11 +99,12 @@ Diamond and HCP are also implemented as part of the API:
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png" alt="2" width = 160px height = 120px> </td>
     </tr>
 </table>
-
+```
 
 #### 2D Bravais Lattices
 All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
 
+```@raw html
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -132,18 +133,19 @@ All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [
     </tr>
 
 </table>
-
+```
 
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
 
+```@raw html
 <table>
     <th align="center">Honeycomb</th>
     <tr>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png" alt="1" width = 160px height = 120px> </td>
     </tr>
 </table>
-
+```
 
 #### User Defined Crystal Structures
 The SimpleCrystals API is not exhaustive, but provides an interface to create non-bravais crystals and polyatomic crystals. For example, the Diamond crystal structure (which is a part of the API) is defined as simple cubic Bravais lattice with an 8 atom basis. Diamond is more naturally thought of as an FCC lattice with a 2 atom basis, but that would require a triclinic boundary.
@@ -181,6 +183,7 @@ end
 
 Both methods yield the same structure with periodic boundary conditions, but the first function uses a conventional cell so the result is much easier to see and create a simulation box for. Whenever possible use a conventional cell (simple cubic lattice). Note that to use both of these functions the lattice parameter a is the distance between Na atoms (or Cl atoms) not the Na-Cl distance as the basis places the atoms at the proper 0.5*a spacing.
 
+```@raw html
 <table>
 <tr>
     <th align="center">Conventional Cell</th>
@@ -191,6 +194,7 @@ Both methods yield the same structure with periodic boundary conditions, but the
     <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
 </tr>
 </table>
+```
 
 #### File I/O
 
