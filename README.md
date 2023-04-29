@@ -12,12 +12,12 @@
 #### Monoatomic Bravais Lattices:
 Whenever possible crystals are implemented using a conventional unit cell so that patterning a simulation cell is simple. A trinclinic boundary will work for the remaining lattices.
 
- SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). For example, The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions. The coordinates can be obtained in code with `get_coordinates()` or saved to a XYZ file with `to_xyz()`.
+ SimpleCrystals.jl re-exports [Unitful.jl](https://painterqubits.github.io/Unitful.jl/stable/) and [StatcArrays.jl](https://github.com/JuliaArrays/StaticArrays.jl) and can handle any atomic symbols from [PeriodicTable.jl](https://github.com/JuliaPhysics/PeriodicTable.jl). For example, The code below creates an FCC crystal of carbon with a conventional cell that is 5.4 Angstroms. The cell is patterened 4 times in the x, y, and z directions. The coordinates can be obtained in code with the `atoms` member variable or saved to a XYZ file with `to_xyz()`.
 
 ```julia
 a = 5.4u"Å"
 fcc_crystal = FCC(a, :C, SVector(4,4,4))
-atoms = get_coordinates(fcc_crystal)
+atoms = fcc_crystal.atoms
 to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 ```
 
@@ -200,10 +200,10 @@ fcc_crystal = FCC(a, :C, SVector(4,4,4))
 to_xyz(fcc_crystal, raw"C:\Users\ejmei\Desktop\positions_fcc.xyz")
 ```
 
-To get the list of atoms in code you can use the `get_coordinates()` function. The code below will return the array of atoms that the to_xyz() function builds internally.
+To get the list of atoms in code you can use the `atoms` member variable. The code below will return the array of atoms that the to_xyz() function builds internally.
 
 ```julia
 a = 5.4u"Å"
 fcc_crystal = FCC(a, :C, SVector(4,4,4))
-atoms = get_coordinates(fcc_crystal)
+atoms = fcc_crystal.atoms
 ```

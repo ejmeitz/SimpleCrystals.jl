@@ -24,7 +24,7 @@ function FCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
              Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
              Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
-    return Crystal(lattice, basis,N)
+    return Crystal(lattice, basis, N)
 end
 
 # Monoatomic BCC -- 2 Atom Basis with SC Lattice Points
