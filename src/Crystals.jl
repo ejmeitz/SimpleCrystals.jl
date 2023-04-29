@@ -6,13 +6,18 @@ export
 struct Crystal{D, B <: AbstractVector{<:Atom{D}}}
     lattice::BravaisLattice{D}
     basis::B
+    N_unit_cells::SVector{D}
 end
 
 #Returns R = n1*a1 + n2*a2 + n3*a3, where a are the primitive lattice vectors
     #This will just be a lattice point, does not account for basis
-function Base.getindex(crystal::Crystal{D}, indices::Vararg{Integer,D}) where D
-    return SVector{D}(sum(indices .* crystal.lattice.primitive_vectors, dims = 1))
+function Base.getindex(lattice::BravaisLattice{D}, indices::Vararg{Integer,D}) where D
+    return SVector{D}(sum(indices .* lattice.primitive_vectors, dims = 1))
 end
+
+# function Base.getindex(crystal::Crystal{D}, indices::Vararg{Integer,D}) where D
+#     return SVector{D}(sum(indices .* crystal.lattice.primitive_vectors, dims = 1))
+# end
 
 # Convert 1D index to equivalent 3D index in a matrix with dimensions N
 # Note this is 0-indexed
@@ -33,7 +38,8 @@ function convert_1d_index(i, N::SVector{2})
 end
 
 # Generates coordinates for 'crystal' from R = n1*a1 + n2*a2 + n3*a3 + basis
-function get_coordinates(crystal::Crystal{D}, N::SVector{D}) where D
+function get_coordinates(crystal::Crystal{D}) where D
+    N = crystal.N_unit_cells
     @assert all(N .> 0) "Number of unit cells should be greater than 0"
 
     #Probably a way to get LP an not allocate all this memory
@@ -47,7 +53,7 @@ function get_coordinates(crystal::Crystal{D}, N::SVector{D}) where D
     #Superimpose basis onto lattice points
     @inbounds for i in range(0,N_lattice_pts-1)
         n = convert_1d_index(i, N)
-        lattice_pt = crystal[n...]
+        lattice_pt = crystal.lattice[n...]
         for (j,basis_atom) in enumerate(crystal.basis)
             atoms[N_basis_atoms*i + j] = Atom(basis_atom.sym, lattice_pt .+ basis_atom.position, basis_atom.charge, basis_atom.mass)
         end
