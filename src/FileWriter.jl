@@ -1,7 +1,7 @@
 export to_xyz
 
 function to_xyz(crystal::Crystal{3}, outpath)
-    N_atoms = length(crystal.atoms)
+    N_atoms = length(crystal)
     
     file = open(outpath, "w")
     println(file,string(N_atoms))
@@ -13,7 +13,7 @@ function to_xyz(crystal::Crystal{3}, outpath)
 end
 
 function to_xyz(crystal::Crystal{2}, outpath)
-    N_atoms = length(crystal.atoms)
+    N_atoms = length(crystal)
     
     file = open(outpath, "w")
     println(file,string(N_atoms))
