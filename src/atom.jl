@@ -19,3 +19,4 @@ AtomsBase.atomic_symbol(atom::Atom) = atom.sym
 AtomsBase.atomic_mass(atom::Atom) = atom.mass
 AtomsBase.atomic_number(atom::Atom) = periodic_table[atom.sym].number
 AtomsBase.position(atom::Atom) = atom.position
+AtomsBase.n_dimensions(atom::Atom) = length(atom.position)

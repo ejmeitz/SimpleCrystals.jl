@@ -76,19 +76,25 @@ end
 ### AtomsBase Compliance ###
 
 Base.length(sys::Crystal) = length(sys.atoms)
-# AtomsBase.bounding_box(sys::Crystal) = sys.system_data.bounding_box
-# AtomsBase.boundary_conditions(sys::Crystal) = sys.system_data.boundary_conditions
+Base.iterate(sys::Crystal, state = 1) = state > length(sys) ? nothing : (sys.atoms[state], state + 1)
 
-# AtomsBase.atomkeys(sys::Crystal) = keys(sys.atom_data)
-# AtomsBase.hasatomkey(sys::Crystal, x::Symbol) = haskey(sys.atom_data, x)
+# AtomsBase.bounding_box(sys::Crystal) = sys.system_data.bounding_box ### HOW TO DO TRICLINIC??
+AtomsBase.boundary_conditions(sys::Crystal{3}) = SVector(Periodic(),Periodic(),Periodic())
+AtomsBase.boundary_conditions(sys::Crystal{2}) = SVector(Periodic(),Periodic())
+AtomsBase.n_dimensions(sys::Crystal) = length(sys.N_unit_cells)
 
-# AtomsBase.position(sys::Crystal)                  = 
-AtomsBase.position(sys::Crystal, i::Integer)        = sys.atoms[i].position
-# AtomsBase.velocity(sys::Crystal)                  = Base.getindex(s, :, :velocity)
-# AtomsBase.velocity(sys::Crystal, i::Integer)      = Base.getindex(s, i, :velocity)
-# AtomsBase.atomic_mass(sys::Crystal)               = Base.getindex(s, :, :atomic_mass)
-# AtomsBase.atomic_mass(sys::Crystal, i::Integer)   = Base.getindex(s, i, :atomic_mass)
-# AtomsBase.atomic_symbol(sys::Crystal)             = Base.getindex(s, :, :atomic_symbol)
-# AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = Base.getindex(s, i, :atomic_symbol)
-# AtomsBase.atomic_number(sys::Crystal)             = Base.getindex(s, :, :atomic_number)
-# AtomsBase.atomic_number(sys::Crystal, i::Integer) = Base.getindex(s, i, :atomic_number)
+AtomsBase.atomkeys(sys::Crystal) = missing
+AtomsBase.hasatomkey(sys::Crystal, x::Symbol) = missing
+
+AtomsBase.species_type(sys::Crystal) = typeof(sys.atoms[1])
+
+AtomsBase.position(sys::Crystal) = broadcast(atom -> atom.position, sys)
+AtomsBase.position(sys::Crystal, i::Integer) = sys.atoms[i].position
+AtomsBase.velocity(sys::Crystal) = missing #zeros(size(sys.atoms))
+AtomsBase.velocity(sys::Crystal, i::Integer) = missing #zeros(size(sys.atoms[i]))
+AtomsBase.atomic_mass(sys::Crystal) = broadcast(atom -> atom.mass, sys)
+AtomsBase.atomic_mass(sys::Crystal, i::Integer) = sys.atoms[i].mass
+AtomsBase.atomic_symbol(sys::Crystal) = broadcast(atom -> atom.sym, sys)
+AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = sys.atoms[i].sym
+AtomsBase.atomic_number(sys::Crystal) = broadcast(atom -> AtomsBase.atomic_number(atom), sys)
+AtomsBase.atomic_number(sys::Crystal, i::Integer) = AtomsBase.atomic_number(sys.atoms[i])

@@ -20,10 +20,10 @@ end
 # Monoatomic FCC -- 4 Atom Basis with SC Lattice Points
 function FCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
-             Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge),
+    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
+             Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
-             Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
+             Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge)]
     return Crystal(lattice, basis, N)
 end
 
