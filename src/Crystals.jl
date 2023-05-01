@@ -111,4 +111,11 @@ AtomsBase.atomic_number(sys::Crystal) = atomic_number.(sys.atoms)
 AtomsBase.atomic_number(sys::Crystal, i::Integer) = atomic_number(sys.atoms[i])
 
 AtomsBase.visualize_ascii(sys::Crystal) = ""
-Base.show(io::IO, sys::Crystal) = print(io, "Crystal with ", length(sys)," atoms.")
+
+function Base.show(io::IO, sys::Crystal)
+    print(io, "Crystal with ", length(sys)," atoms.")
+end
+
+function Base.show(io::IO, ::MIME"text/plain", sys::Crystal)
+    print(io, "Crystal with ", length(sys)," atoms.")
+end

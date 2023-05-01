@@ -15,6 +15,7 @@ function Atom(sym::Symbol, position; charge =0.0u"C", mass = periodic_table[sym]
     return Atom{length(position),typeof(charge),typeof(mass)}(sym, position, charge, mass)
 end
 
+element_name(atom::Atom) = periodic_table[atom.sym].name
 
 
 Base.keys(atom::Atom) = (:sym, :position, :charge, :mass)
@@ -30,5 +31,9 @@ AtomsBase.position(atom::Atom) = atom.position
 AtomsBase.n_dimensions(::Atom{D}) where D = D
 
 function Base.show(io::IO, atom::Atom)
-    print(io, "$(atom.sym) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
+    print(io, "$(element_name(atom)) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
+end
+
+function Base.show(io::IO, ::MIME"text/plain", sys::Crystal)
+    print(io, "$(element_name(atom)) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
 end
