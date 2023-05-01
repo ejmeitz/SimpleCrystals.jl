@@ -49,6 +49,7 @@ end
 ### Monoclinic ###
 ##################
 
+# Monoclinic Primitive
 function Monoclinic(a, b, c, β, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(Monoclinic(a,b,c,β), Primitive())
     basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
@@ -103,7 +104,7 @@ end
 ### Tetragonal ###
 ##################
 
-# Ortho Primitive w/ 4 Atom Basis
+# Tetragonal Primitive
 function Tetragonal(a, c, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(Tetragonal(a,c), Primitive())
     basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(c)), charge = charge)]

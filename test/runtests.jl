@@ -23,6 +23,7 @@ end
 
 @testset "3D-Other" begin
     
+    # Add tests to check that primitive vectors are right handed
 
 end
 
@@ -37,6 +38,11 @@ end
     atoms = get_coordinates(hex_crystal, SVector(4,4))
 
     @test length(atoms) == 32
+
+end
+
+@testset "AtomsBase" begin
+    
 
 end
 

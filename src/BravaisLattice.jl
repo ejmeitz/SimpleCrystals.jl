@@ -30,6 +30,10 @@ function BravaisLattice(cf::CrystalFamily{D}, ct::CenteringType) where D
     return BravaisLattice{D}(cf, ct, p_vec)
 end
 
+#Returns R = n1*a1 + n2*a2 + n3*a3, where a are the primitive lattice vectors
+function Base.getindex(lattice::BravaisLattice{D}, indices::Vararg{Integer,D}) where D
+    return SVector{D}(sum(indices .* lattice.primitive_vectors, dims = 1))
+end
 
 #####################################################
 
@@ -127,12 +131,8 @@ function get_primitive_vectors(cf::CrystalFamily{3}, ct::Primitive)
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
 
     if hasfield(typeof(cf), :lattice_angles)
-        # Set α
-        rotateAboutB!(view(primitive_vectors,3,:), 90u"°" - cf.lattice_angles[1])
-        # Set β
-        rotateAboutA!(view(primitive_vectors,3,:), 90u"°" - cf.lattice_angles[2])
-        # Set γ
-        rotateAboutC!(view(primitive_vectors,2,:), 90u"°" - cf.lattice_angles[3])
+        rotate_primitive_vectors!(primitive_vectors, cf.lattice_constants[2], cf.lattice_constants[3],
+             cf.lattice_angles[1], cf.lattice_angles[2], cf.lattice_angles[3])
     end
 
     return primitive_vectors
@@ -142,6 +142,12 @@ FaceCenteredSupportedTypes = Union{Cubic, Orthorhombic}
 function get_primitive_vectors(cf::FaceCenteredSupportedTypes, ct::FaceCentered)
     primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0]) 
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
+
+    if hasfield(typeof(cf), :lattice_angles)
+        rotate_primitive_vectors!(primitive_vectors, cf.lattice_constants[2], cf.lattice_constants[3],
+             cf.lattice_angles[1], cf.lattice_angles[2], cf.lattice_angles[3])
+    end
+
     return primitive_vectors
 end
 
@@ -149,6 +155,12 @@ BodyCenteredSupportedTypes = Union{Cubic, Orthorhombic, Tetragonal}
 function get_primitive_vectors(cf::BodyCenteredSupportedTypes, ct::BodyCentered)
     primitive_vectors = MMatrix{3,3}([1.0 0.0 0.0; 0.0 1.0 0.0; 0.5  0.5  0.5])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
+
+    if hasfield(typeof(cf), :lattice_angles)
+        rotate_primitive_vectors!(primitive_vectors, cf.lattice_constants[2], cf.lattice_constants[3],
+             cf.lattice_angles[1], cf.lattice_angles[2], cf.lattice_angles[3])
+    end
+
     return primitive_vectors
 end
 
@@ -156,6 +168,12 @@ BaseCenteredSupportedTypes = Union{Monoclinic, Orthorhombic}
 function get_primitive_vectors(cf::BaseCenteredSupportedTypes, ct::BaseCentered)
     primitive_vectors = MMatrix{3,3}([1.0 1.0 0.0; 1.0 -1.0 0.0; 0.0  0.0  1.0])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
+
+    if hasfield(typeof(cf), :lattice_angles)
+        rotate_primitive_vectors!(primitive_vectors, cf.lattice_constants[2], cf.lattice_constants[3],
+             cf.lattice_angles[1], cf.lattice_angles[2], cf.lattice_angles[3])
+    end
+
     return primitive_vectors
 end
 
@@ -180,6 +198,15 @@ end
 #####################################################
 # Helper functions
 
-rotateAboutA!(v, θ) = copyto!(v, MMatrix{3,3}([1.0 0.0 0.0; 0.0 cos(θ) -sin(θ); 0  sin(θ)  cos(θ)]) * v)
-rotateAboutB!(v, θ) = copyto!(v, MMatrix{3,3}([cos(θ) 0.0 sin(θ); 0.0 1.0 0.0; -sin(θ) 0.0 cos(θ)]) * v)
-rotateAboutC!(v, θ) = copyto!(v, MMatrix{3,3}([cos(θ) -sin(θ) 0.0; sin(θ) cos(θ) 0.0; 0.0  0.0  1.0]) * v)
+# For arbitrary rotaions
+# Maintains right-handed coordinate system
+function rotate_primitive_vectors!(p_vec, b, c, α, β, γ)
+    # Rotate vector along y-axis
+    p_vec[2,:] = [b*cos(γ), b*sin(γ), zero(b)]
+    # Rotate vector along z-axis
+    cx = c*cos(β)
+    cy = c*(cos(α) - (cos(β)*cos(γ)))/sin(γ)
+    cz = sqrt(c^2 - cx^2 - cy^2)
+    p_vec[3,:] = [cx, cy, cz]
+    return p_vec
+end
