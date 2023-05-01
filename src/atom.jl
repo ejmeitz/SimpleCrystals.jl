@@ -34,6 +34,6 @@ function Base.show(io::IO, atom::Atom)
     print(io, "$(element_name(atom)) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
 end
 
-function Base.show(io::IO, ::MIME"text/plain", sys::Crystal)
+function Base.show(io::IO, ::MIME"text/plain", atom::Atom)
     print(io, "$(element_name(atom)) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
 end
