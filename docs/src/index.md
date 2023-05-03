@@ -24,7 +24,7 @@ to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 #### 3D Bravais Lattices
 All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily in OVITO.
 
-```html
+
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -84,7 +84,7 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
     </tr>
 
 </table>
-```
+
 
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API: 
