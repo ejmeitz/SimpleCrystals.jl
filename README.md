@@ -5,7 +5,7 @@
 [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
 [![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://ejmeitz.github.io/SimpleCrystals.jl/stable/)
 
- SimpleCrystals.jl is an interface for creating crystal geometries for molecular simulation within Julia. SimpleCrystals implements all 3D and 2D Bravais lattices (e.g. FCC & BCC) and allows users to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures. The [AtomsBase](https://github.com/JuliaMolSim/AtomsBase.jl) interface is implemented (WIP) to make use with other Julian molecular simulation software simple. There is no support for reading in crystal structures from other software (e.g. CIF files). SimpleCrystals is intended to provide a quick, lightweight method for generating atomic coordinates without leaving Julia.
+ SimpleCrystals.jl is an interface for creating crystal geometries for molecular simulation within Julia. SimpleCrystals implements all 3D and 2D Bravais lattices (e.g. FCC & BCC) and allows users to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures. The [AtomsBase](https://github.com/JuliaMolSim/AtomsBase.jl) interface is implemented to make use with other Julian molecular simulation software simple. There is no support for reading in crystal structures from other software (e.g. CIF files). SimpleCrystals is intended to provide a quick, lightweight method for generating atomic coordinates without leaving Julia.
 
 
 
