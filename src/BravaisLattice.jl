@@ -115,7 +115,8 @@ struct Hexagonal{LC,LA} <: CrystalFamily{3}
     lattice_angles::SVector{3,LA}
 end
 
-Hexagonal(a,c) = Hexagonal{typeof(a),typeof(90u"°")}(SVector(a,a,c),SVector(90u"°", 90u"°", 120u"°"))
+#Defined with 60deg instead of 120 so that domain is triclinic
+Hexagonal(a,c) = Hexagonal{typeof(a),typeof(90u"°")}(SVector(a,a,c),SVector(90u"°", 90u"°", 60u"°"))
 
 struct Hexagonal2D{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
