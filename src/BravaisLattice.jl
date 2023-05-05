@@ -1,6 +1,8 @@
 export
     Crystal, BravaisLattice,
-    Cubic, Square, Orthorhombic, Rectangular, Monoclinic, Oblique, Triclinic, Tetragonal, Rhombohedral, Hexagonal, Hexagonal2D,
+    CubicLattice, SquareLattice, OrthorhombicLattice, RectangularLattice,
+    MonoclinicLattice, ObliqueLattice, TriclinicLattice, TetragonalLattice,
+    RhombohedralLattice, HexagonalLattice, Hexagonal2DLattice,
     Primitive, FaceCentered, BodyCentered, BaseCentered, Centered
     #some of the exported BravaisLattice's have the same name as the exported crystals, but they take different parameters
  
@@ -37,93 +39,93 @@ end
 
 #####################################################
 
-struct Cubic{LC} <: CrystalFamily{3}
+struct CubicLattice{LC} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
 end
 
-Cubic(a) = Cubic{typeof(a)}(SVector(a,a,a))
+CubicLattice(a) = CubicLattice{typeof(a)}(SVector(a,a,a))
 
-struct Square{LC} <: CrystalFamily{2}
+struct SquareLattice{LC} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
 end
 
-Square(a) = Square{typeof(a)}(SVector(a,a))
+SquareLattice(a) = SquareLattice{typeof(a)}(SVector(a,a))
 
 #####################################################
 
-struct Orthorhombic{LC} <: CrystalFamily{3}
+struct OrthorhombicLattice{LC} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
 end
 
-Orthorhombic(a,b,c) = Orthorhombic{typeof(a)}(SVector(a,b,c))
+OrthorhombicLattice(a,b,c) = OrthorhombicLattice{typeof(a)}(SVector(a,b,c))
 
 
-struct Rectangular{LC} <: CrystalFamily{2}
+struct RectangularLattice{LC} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
 end
 
-Rectangular(a,b) = Rectangular{typeof(a)}(SVector(a,b))
+RectangularLattice(a,b) = RectangularLattice{typeof(a)}(SVector(a,b))
 
 #####################################################
 
-struct Monoclinic{LC,LA} <: CrystalFamily{3}
+struct MonoclinicLattice{LC,LA} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
     lattice_angles::SVector{3,LA}
 end
 
-Monoclinic(a, b, c, β) = Monoclinic{typeof(a),typeof(β)}(SVector(a,b,c), SVector(90u"°", β, 90u"°"))
+MonoclinicLattice(a, b, c, β) = MonoclinicLattice{typeof(a),typeof(β)}(SVector(a,b,c), SVector(90u"°", β, 90u"°"))
 
 # 2D equivalent
-struct Oblique{LC,LA} <: CrystalFamily{2}
+struct ObliqueLattice{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
     lattice_angle::LA
 end
 
-Oblique(a, b, θ) = Oblique{typeof(a),typeof(θ)}(SVector(a,b), θ)
+ObliqueLattice(a, b, θ) = ObliqueLattice{typeof(a),typeof(θ)}(SVector(a,b), θ)
 #####################################################
 
-struct Triclinic{LC,LA} <: CrystalFamily{3}
+struct TriclinicLattice{LC,LA} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
     lattice_angles::SVector{3,LA}
 end
 
-Triclinic(a, b, c, α, β, γ) = Triclinic{typeof(a),typeof(β)}(SVector(a,b,c), SVector(α, β, γ))
+TriclinicLattice(a, b, c, α, β, γ) = TriclinicLattice{typeof(a),typeof(β)}(SVector(a,b,c), SVector(α, β, γ))
 
 #####################################################
 
-struct Tetragonal{LC} <: CrystalFamily{3}
+struct TetragonalLattice{LC} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
 end
 
-Tetragonal(a, c) = Tetragonal{typeof(a)}(SVector(a,a,c))
+TetragonalLattice(a, c) = TetragonalLattice{typeof(a)}(SVector(a,a,c))
 
 #####################################################
 
-struct Rhombohedral{LC,LA} <: CrystalFamily{3}
+struct RhombohedralLattice{LC,LA} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
     lattice_angles::SVector{3,LA}
 end
 
-function Rhombohedral(a, α)
-    return Rhombohedral{typeof(a),typeof(α)}(SVector(a,a,a),SVector(α, α, α))
+function RhombohedralLattice(a, α)
+    return RhombohedralLattice{typeof(a),typeof(α)}(SVector(a,a,a),SVector(α, α, α))
 end
 
 #####################################################
 
-struct Hexagonal{LC,LA} <: CrystalFamily{3}
+struct HexagonalLattice{LC,LA} <: CrystalFamily{3}
     lattice_constants::SVector{3,LC}
     lattice_angles::SVector{3,LA}
 end
 
 #Defined with 60deg instead of 120 so that domain is triclinic
-Hexagonal(a,c) = Hexagonal{typeof(a),typeof(90u"°")}(SVector(a,a,c),SVector(90u"°", 90u"°", 60u"°"))
+HexagonalLattice(a,c) = HexagonalLattice{typeof(a),typeof(90u"°")}(SVector(a,a,c),SVector(90u"°", 90u"°", 60u"°"))
 
-struct Hexagonal2D{LC,LA} <: CrystalFamily{2}
+struct Hexagonal2DLattice{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
     lattice_angle::LA
 end
 
-Hexagonal2D(a) = Hexagonal2D{typeof(a),typeof(120u"°")}(SVector(a,a), 120u"°")
+Hexagonal2DLattice(a) = Hexagonal2DLattice{typeof(a),typeof(120u"°")}(SVector(a,a), 120u"°")
 
 #####################################################
 
@@ -139,7 +141,7 @@ function get_primitive_vectors(cf::CrystalFamily{3}, ct::Primitive)
     return primitive_vectors
 end
 
-FaceCenteredSupportedTypes = Union{Cubic, Orthorhombic}
+FaceCenteredSupportedTypes = Union{CubicLattice, OrthorhombicLattice}
 function get_primitive_vectors(cf::FaceCenteredSupportedTypes, ct::FaceCentered)
     primitive_vectors = MMatrix{3,3}([0.0 0.5 0.5; 0.5 0.0 0.5; 0.5 0.5 0.0]) 
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
@@ -152,7 +154,7 @@ function get_primitive_vectors(cf::FaceCenteredSupportedTypes, ct::FaceCentered)
     return primitive_vectors
 end
 
-BodyCenteredSupportedTypes = Union{Cubic, Orthorhombic, Tetragonal}
+BodyCenteredSupportedTypes = Union{CubicLattice, OrthorhombicLattice, TetragonalLattice}
 function get_primitive_vectors(cf::BodyCenteredSupportedTypes, ct::BodyCentered)
     primitive_vectors = MMatrix{3,3}([1.0 0.0 0.0; 0.0 1.0 0.0; 0.5  0.5  0.5])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
@@ -165,7 +167,7 @@ function get_primitive_vectors(cf::BodyCenteredSupportedTypes, ct::BodyCentered)
     return primitive_vectors
 end
 
-BaseCenteredSupportedTypes = Union{Monoclinic, Orthorhombic}
+BaseCenteredSupportedTypes = Union{MonoclinicLattice, OrthorhombicLattice}
 function get_primitive_vectors(cf::BaseCenteredSupportedTypes, ct::BaseCentered)
     primitive_vectors = MMatrix{3,3}([1.0 1.0 0.0; 1.0 -1.0 0.0; 0.0  0.0  1.0])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
@@ -189,7 +191,7 @@ function get_primitive_vectors(cf::CrystalFamily{2}, ct::Primitive)
     return primitive_vectors
 end
 
-function get_primitive_vectors(cf::Rectangular, ct::Centered)
+function get_primitive_vectors(cf::RectangularLattice, ct::Centered)
     primitive_vectors = MMatrix{2,2}([0.5 0.5; 0.5 -0.5])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     return primitive_vectors
