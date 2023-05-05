@@ -155,7 +155,7 @@ Similarly, we can create NaCl (not in the API) which can be thought of as a simp
 2-Atom Basis SC:
 ```julia
 function NaCl1(a, N::SVector{3})
-    lattice = BravaisLattice(Cubic(a), Primitive())
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
     basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
              Atom(:Na, SVector(0.5*a,zero(a),0.5*a), charge = 1.0u"q"),
              Atom(:Na, SVector(zero(a), 0.5*a, 0.5*a), charge = 1.0u"q"),
@@ -170,7 +170,7 @@ end
 Intertwined FCC:
 ```julia
 function NaCl2(a, N::SVector{3})
-    lattice = BravaisLattice(Cubic(a), FaceCentered())
+    lattice = BravaisLattice(CubicLattice(a), FaceCentered())
     basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
              Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q")]
     return Crystal(lattice,basis,N)

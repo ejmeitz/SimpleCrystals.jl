@@ -78,7 +78,7 @@ MonoclinicLattice(a, b, c, β) = MonoclinicLattice{typeof(a),typeof(β)}(SVector
 # 2D equivalent
 struct ObliqueLattice{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
-    lattice_angle::LA
+    lattice_angles::LA
 end
 
 ObliqueLattice(a, b, θ) = ObliqueLattice{typeof(a),typeof(θ)}(SVector(a,b), θ)
@@ -122,7 +122,7 @@ HexagonalLattice(a,c) = HexagonalLattice{typeof(a),typeof(90u"°")}(SVector(a,a,
 
 struct Hexagonal2DLattice{LC,LA} <: CrystalFamily{2}
     lattice_constants::SVector{2,LC}
-    lattice_angle::LA
+    lattice_angles::LA
 end
 
 Hexagonal2DLattice(a) = Hexagonal2DLattice{typeof(a),typeof(120u"°")}(SVector(a,a), 120u"°")
@@ -184,8 +184,8 @@ function get_primitive_vectors(cf::CrystalFamily{2}, ct::Primitive)
     primitive_vectors = MMatrix{2,2}([1.0 0.0; 0.0 1.0])
     primitive_vectors = primitive_vectors.*transpose(cf.lattice_constants)
     
-    if hasfield(typeof(cf), :lattice_angle)
-        β = cf.lattice_angle - 90u"°"
+    if hasfield(typeof(cf), :lattice_angles)
+        β = cf.lattice_angles - 90u"°"
         primitive_vectors[2,:] = [cos(β) -sin(β); sin(β)  cos(β)] * primitive_vectors[2,:]
     end
     return primitive_vectors
