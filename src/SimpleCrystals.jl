@@ -9,7 +9,7 @@ using PeriodicTable
 
 include("atom.jl")
 include("BravaisLattice.jl")
-include("Crystals.jl")
+include("Crystal.jl")
 include("FileWriter.jl")
 
 include("bravais/2D_bravais.jl")
