@@ -117,7 +117,7 @@ struct HexagonalLattice{LC,LA} <: CrystalFamily{3}
     lattice_angles::SVector{3,LA}
 end
 
-#Defined with 60deg instead of 120 so that domain is triclinic
+# Implemented as triangular unit cell
 HexagonalLattice(a,c) = HexagonalLattice{typeof(a),typeof(90u"°")}(SVector(a,a,c),SVector(90u"°", 90u"°", 60u"°"))
 
 struct Hexagonal2DLattice{LC,LA} <: CrystalFamily{2}
@@ -125,7 +125,8 @@ struct Hexagonal2DLattice{LC,LA} <: CrystalFamily{2}
     lattice_angles::LA
 end
 
-Hexagonal2DLattice(a) = Hexagonal2DLattice{typeof(a),typeof(120u"°")}(SVector(a,a), 120u"°")
+# Implemented as triangular unit cell
+Hexagonal2DLattice(a) = Hexagonal2DLattice{typeof(a),typeof(60u"°")}(SVector(a,a), 60u"°")
 
 #####################################################
 

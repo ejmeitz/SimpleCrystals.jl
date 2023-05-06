@@ -8,42 +8,32 @@ using LinearAlgebra
 
 @testset "3D-Bravais" begin
     a = 0.54u"nm"
-    sc_crystal = SC(0.54u"nm", :C)
-    atoms_sc = get_coordinates(sc_crystal, SVector(4,4,4))
+    sc_crystal = SC(0.54u"nm", :C, SVector(4,4,4))
+    fcc_crystal = FCC(0.54u"nm", :C, SVector(4,4,4))
+    diamond_crystal = Diamond(a, :C, SVector(4,4,4))
+    hex_crystal = Honeycomb(0.54u"nm", :C, SVector(4,4))
 
-    fcc_crystal = FCC(0.54u"nm", :C)
-    atoms_fcc = get_coordinates(fcc_crystal, SVector(4,4,4))
 
     @test length(atoms_sc) == 64
-    @test norm(ustrip.(atoms_sc[1].position) .- ustrip.(atoms_sc[2].position)) == ustrip(a)
+    @test norm(ustrip.(sc_crystal[1].position) .- ustrip.(sc_crystal[2].position)) == ustrip(a)
 
     @test length(atoms_fcc) == 256
-    @test norm(ustrip.(atoms_fcc[1].position) .- ustrip.(atoms_fcc[2].position)) ≈ ustrip(a)/sqrt(2)
-end
+    @test norm(ustrip.(fcc_crystal[1].position) .- ustrip.(fcc_crystal[2].position)) ≈ ustrip(a)/sqrt(2)
 
-@testset "3D-Other" begin
-    
+    @test length(diamond_crystal) == 512
+
+    @test length(hex_crystal) == 32
+
     # Add tests to check that primitive vectors are right handed
-
-end
-
-@testset "2D-Bravais" begin
-    
-
-end
-
-@testset "2D-Other" begin
-    
-    hex_crystal = Honeycomb(0.54u"nm",:C)
-    atoms = get_coordinates(hex_crystal, SVector(4,4))
-
-    @test length(atoms) == 32
-
 end
 
 @testset "AtomsBase" begin
     
+    fcc_crystal = FCC(0.54u"nm", :C, SVector(4,4,4))
 
+    @test n_dimensions(fcc_crystal) == 3
+    @test atomic_mass(fcc_crystal, 1) == atomic_mass(fcc_crystal[1])
+    @test atomic_number(fcc_crystal,1) == :C
 end
 
 
