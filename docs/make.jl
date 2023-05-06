@@ -5,10 +5,7 @@ format = Documenter.HTML(
     prettyurls = get(ENV, "CI", nothing) == "true"
 ), 
 pages = [
-    "Home"                      => "index.md",
-    "Examples"                  => "examples.md",
-    "Related software"          => "related.md",
-    "API"                       => "api.md",
+    "Home"                      => "index.md"
 ]
 )
 
