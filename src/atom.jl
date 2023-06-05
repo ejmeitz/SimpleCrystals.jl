@@ -11,17 +11,17 @@ struct Atom{D,C,M}
     mass::M
 end
 
-function Atom(sym::Symbol, position; charge =0.0u"C", mass = periodic_table[sym].atomic_mass)
+function Atom(sym, position; charge =0.0u"q", mass = periodic_table[sym].atomic_mass)
     return Atom{length(position),typeof(charge),typeof(mass)}(sym, position, charge, mass)
 end
 
 element_name(atom::Atom) = periodic_table[atom.sym].name
-
+charge(atom::Atom) = atom.charge
 
 Base.keys(atom::Atom) = (:sym, :position, :charge, :mass)
 Base.haskey(atom::Atom, x::Symbol) = hasfield(Atom, x)
 Base.getindex(atom::Atom, x::Symbol) = hasfield(Atom, x) ? getfield(atom, x) : error("No field `$x` in Atom object. Allowed keys are $(keys(atom)).")
-Base.get(atom::Atom, x::Symbol, default) = hasfield(Atom, x) ? getfield(atom,x) : throw(KeyError(x))
+Base.get(atom::Atom, x::Symbol, default) = hasfield(Atom, x) ? getfield(atom,x) : default
 Base.pairs(atom::Atom) = (k => atom[k] for k in keys(atom))
 
 AtomsBase.atomic_symbol(atom::Atom) = atom.sym
@@ -31,9 +31,9 @@ AtomsBase.position(atom::Atom) = atom.position
 AtomsBase.n_dimensions(::Atom{D}) where D = D
 
 function Base.show(io::IO, atom::Atom)
-    print(io, "$(element_name(atom)) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
+    print(io, "$(element_name(atom)) atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
 end
 
 function Base.show(io::IO, ::MIME"text/plain", atom::Atom)
-    print(io, "$(element_name(atom)) atom at $(round.(typeof(atom.position[1]), atom.position, digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
+    print(io, "$(element_name(atom)) atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
 end
