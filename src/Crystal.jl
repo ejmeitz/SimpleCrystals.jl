@@ -75,7 +75,7 @@ AtomsBase.keys(sys::Crystal) = (:lattice, :basis, :N_unit_cells, :atoms)
 Base.getindex(sys::Crystal, x::Symbol) = hasfield(Crystal, x) ? getfield(sys, x) : error("No field `$x` in Atom object. Allowed keys are $(keys(sys)).")
 AtomsBase.haskey(sys::Crystal, x::Symbol) = hasfield(Crystal, x)
 Base.pairs(sys::Crystal) = (k => sys[k] for k in keys(sys))
-
+Base.get(sys::Crystal, x::Symbol, default) = hasfield(Crystal, x) ? getfield(sys,x) : default
 
 Base.length(sys::Crystal) = length(sys.atoms)
 Base.iterate(sys::Crystal, state = 1) = state > length(sys) ? nothing : (sys.atoms[state], state + 1)
