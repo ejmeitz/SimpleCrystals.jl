@@ -19,6 +19,12 @@ a = 5.4u"Å"
 fcc_crystal = FCC(a, :C, SVector(4,4,4))
 atoms = fcc_crystal.atoms
 to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
+
+#Equivalently, if you just want to specify an atomic mass
+a = 5.4u"Å"
+fcc_crystal = FCC(a, 12.011u"g/mol", SVector(4,4,4))
+atoms = fcc_crystal.atoms
+to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 ```
 
 #### 3D Bravais Lattices

@@ -17,6 +17,12 @@ function SC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     return Crystal(lattice,basis,N)
 end
 
+function SC(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
+    basis = [Atom(SVector(zero(a), zero(a), zero(a)), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
 # Monoatomic FCC -- 4 Atom Basis with SC Lattice Points
 function FCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(CubicLattice(a), Primitive())
@@ -24,6 +30,15 @@ function FCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
              Atom(atomic_symbol, SVector(0.5*a, 0.5*a, zero(a)), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, zero(a), 0.5*a), charge = charge),
              Atom(atomic_symbol, SVector(zero(a), 0.5*a, 0.5*a), charge = charge)]
+    return Crystal(lattice, basis, N)
+end
+
+function FCC(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*a, zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, zero(a), 0.5*a), atomic_mass, charge = charge),
+             Atom(SVector(zero(a), 0.5*a, 0.5*a), atomic_mass, charge = charge)]
     return Crystal(lattice, basis, N)
 end
 
@@ -35,6 +50,13 @@ function BCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     return Crystal(lattice,basis,N)
 end
 
+function BCC(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*a, 0.5*a), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
 #################
 ### Triclinic ###
 #################
@@ -42,6 +64,12 @@ end
 function Triclinic(a, b, c, α, β, γ, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(TriclinicLattice(a,b,c,α,β,γ), Primitive())
     basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
+function Triclinic(a, b, c, α, β, γ, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(TriclinicLattice(a,b,c,α,β,γ), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
@@ -56,6 +84,12 @@ function Monoclinic(a, b, c, β, atomic_symbol::Symbol, N::SVector{3}; charge = 
     return Crystal(lattice,basis,N)
 end
 
+function Monoclinic(a, b, c, β, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(MonoclinicLattice(a,b,c,β), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
 # Monoclinic Primitive w/ 2 Atom Basis
 function MonoclinicBaseCentered(a, b, c, β, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(MonoclinicLattice(a,b,c,β), Primitive())
@@ -64,6 +98,12 @@ function MonoclinicBaseCentered(a, b, c, β, atomic_symbol::Symbol, N::SVector{3
     return Crystal(lattice,basis,N)
 end
 
+function MonoclinicBaseCentered(a, b, c, β, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(MonoclinicLattice(a,b,c,β), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*b, zero(c)), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
 ####################
 ### Orthorhombic ###
 ####################
@@ -71,6 +111,12 @@ end
 function Orthorhombic(a, b, c, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(OrthorhombicLattice(a,b,c), Primitive())
     basis = [Atom(atomic_symbol, SVector(zero(a),zero(b),zero(c)), charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
+function Orthorhombic(a, b, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(OrthorhombicLattice(a,b,c), Primitive())
+    basis = [Atom(SVector(zero(a),zero(b),zero(c)), atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
@@ -82,11 +128,24 @@ function OrthorhombicBaseCentered(a, b, c, atomic_symbol::Symbol, N::SVector{3};
     return Crystal(lattice,basis,N)
 end
 
+function OrthorhombicBaseCentered(a, b, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(OrthorhombicLattice(a,b,c), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*b, zero(c)), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
 # Ortho Primitive w/ 2 Atom Basis
 function OrthorhombicBodyCentered(a, b, c, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(OrthorhombicLattice(a,b,c), Primitive())
     basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, 0.5*b, 0.5*c), charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+function OrthorhombicBodyCentered(a, b, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(OrthorhombicLattice(a,b,c), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*b, 0.5*c), atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
@@ -97,6 +156,15 @@ function OrthorhombicFaceCentered(a, b, c, atomic_symbol::Symbol, N::SVector{3};
              Atom(atomic_symbol, SVector(0.5*a, 0.5*b, zero(c)), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, zero(b), 0.5*c), charge = charge),
              Atom(atomic_symbol, SVector(zero(a), 0.5*b, 0.5*c), charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
+function OrthorhombicFaceCentered(a, b, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(OrthorhombicLattice(a,b,c), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*b, zero(c)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, zero(b), 0.5*c), atomic_mass, charge = charge),
+             Atom(SVector(zero(a), 0.5*b, 0.5*c), atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
@@ -111,11 +179,24 @@ function Tetragonal(a, c, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C"
     return Crystal(lattice,basis,N)
 end
 
+function Tetragonal(a, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(TetragonalLattice(a,c), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(c)), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
 # Tetragonal Primitive w/ 2 Atom Basis
 function TetragonalBodyCentered(a, c, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(TetragonalLattice(a,c), Primitive())
     basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge),
              Atom(atomic_symbol, SVector(0.5*a, 0.5*a, 0.5*c), charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
+function TetragonalBodyCentered(a, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(TetragonalLattice(a,c), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge),
+             Atom(SVector(0.5*a, 0.5*a, 0.5*c), atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
@@ -129,8 +210,14 @@ function Rhombohedral(a, α, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u
     return Crystal(lattice,basis,N)
 end
 
-function Hexagonal(a, c, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
+function Rhombohedral(a, α, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(RhombohedralLattice(a, α), Primitive())
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+
+function Hexagonal(a, c, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(HexagonalLattice(a, c), Primitive())
-    basis = [Atom(atomic_symbol, SVector(zero(a),zero(a),zero(a)), charge = charge)]
+    basis = [Atom(SVector(zero(a),zero(a),zero(a)), atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
