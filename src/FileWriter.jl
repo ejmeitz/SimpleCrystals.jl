@@ -7,7 +7,7 @@ function to_xyz(crystal::Crystal{3}, outpath)
     println(file,string(N_atoms))
     println(file,"Comment Line")
     for atom in crystal
-        println(file,"$(string(atom.sym)) $(ustrip(atom.position[1])) $(ustrip(atom.position[2])) $(ustrip(atom.position[3]))")
+        println(file,"$(string(atomic_symbol(atom))) $(ustrip(atom.position[1])) $(ustrip(atom.position[2])) $(ustrip(atom.position[3]))")
     end
     close(file)
 end
@@ -19,7 +19,7 @@ function to_xyz(crystal::Crystal{2}, outpath)
     println(file,string(N_atoms))
     println(file,"Comment Line")
     for atom in crystal
-        println(file,"$(string(atom.sym)) $(ustrip(atom.position[1])) $(ustrip(atom.position[2]))")
+        println(file,"$(string(atomic_symbol(atom))) $(ustrip(atom.position[1])) $(ustrip(atom.position[2]))")
     end
     close(file)
 end

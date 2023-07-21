@@ -5,10 +5,10 @@ export
 periodic_table = PeriodicTable.elements
 
 struct Atom{D,C,M}
-    sym::Symbol
+    atomic_symbol::Symbol
     position::SVector{D}
     charge::C
-    mass::M
+    atomic_mass::M
 end
 
 function Atom(sym::Symbol, position; charge =0.0u"q", mass = periodic_table[sym].atomic_mass)
@@ -22,23 +22,24 @@ end
 
 charge(atom::Atom) = atom.charge
 
-Base.keys(atom::Atom) = (:sym, :position, :charge, :mass)
+Base.keys(atom::Atom) = fieldnames(typeof(atom))
 Base.haskey(atom::Atom, x::Symbol) = hasfield(Atom, x)
 Base.getindex(atom::Atom, x::Symbol) = hasfield(Atom, x) ? getfield(atom, x) : error("No field `$x` in Atom object. Allowed keys are $(keys(atom)).")
 Base.get(atom::Atom, x::Symbol, default) = hasfield(Atom, x) ? getfield(atom,x) : default
 Base.pairs(atom::Atom) = (k => atom[k] for k in keys(atom))
 
-AtomsBase.atomic_symbol(atom::Atom) = atom.sym
-AtomsBase.atomic_mass(atom::Atom) = atom.mass
-AtomsBase.atomic_number(atom::Atom) = (atom.sym == :unknown) ? :unknown : periodic_table[atom.sym].number
+AtomsBase.atomic_symbol(atom::Atom) = atom.atomic_symbol
+AtomsBase.atomic_mass(atom::Atom) = atom.atomic_mass
+AtomsBase.atomic_number(atom::Atom) = (atom.atomic_symbol == :unknown) ? :unknown : periodic_table[atom.atomic_symbol].number
 AtomsBase.position(atom::Atom) = atom.position
+AtomsBase.velocity(atom::Atom) = missing
 AtomsBase.n_dimensions(::Atom{D}) where D = D
 
 function Base.show(io::IO, atom::Atom)
-    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
+    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(atomic_mass(atom)) ")
 end
 
 
 function Base.show(io::IO, ::MIME"text/plain", atom::Atom)
-    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(atom.charge) and mass : $(atom.mass) ")
+    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(atomic_mass(atom)) ")
 end

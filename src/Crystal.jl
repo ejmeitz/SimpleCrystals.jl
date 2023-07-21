@@ -58,7 +58,8 @@ function get_coordinates(lattice::BravaisLattice{D}, basis, N::SVector{D}) where
         n = convert_1d_index(i, N)
         lattice_pt = lattice[n...]
         for (j,basis_atom) in enumerate(basis)
-            atoms[N_basis_atoms*i + j] = Atom(basis_atom.sym, lattice_pt .+ basis_atom.position, basis_atom.charge, basis_atom.mass)
+            atoms[N_basis_atoms*i + j] = Atom(atomic_symbol(basis_atom), lattice_pt .+ basis_atom.position,
+                charge(basis_atom), atomic_mass(basis_atom))
         end
     end
 
@@ -71,7 +72,7 @@ end
 Base.getindex(sys::Crystal, i::Int) = sys.atoms[i]
 Base.getindex(sys::Crystal, i::Int, x::Symbol) = Base.getindex(sys.atoms[i], x)
 Base.getindex(sys::Crystal, ::Colon, x::Symbol) = Base.getindex.(sys.atoms, Ref(x))
-AtomsBase.keys(sys::Crystal) = (:lattice, :basis, :N_unit_cells, :atoms)
+AtomsBase.keys(sys::Crystal) = fieldnames(typeof(sys))
 Base.getindex(sys::Crystal, x::Symbol) = hasfield(Crystal, x) ? getfield(sys, x) : error("No field `$x` in Atom object. Allowed keys are $(keys(sys)).")
 AtomsBase.haskey(sys::Crystal, x::Symbol) = hasfield(Crystal, x)
 Base.pairs(sys::Crystal) = (k => sys[k] for k in keys(sys))
@@ -100,11 +101,11 @@ AtomsBase.velocity(sys::Crystal, i::Integer) = missing #zeros(size(sys.atoms[i])
 AtomsBase.velocity(sys::Crystal, ::Colon) = missing
 
 AtomsBase.atomic_mass(sys::Crystal) = atomic_mass.(sys.atoms)
-AtomsBase.atomic_mass(sys::Crystal, i::Integer) = sys.atoms[i].mass
+AtomsBase.atomic_mass(sys::Crystal, i::Integer) = atomic_mass(sys.atoms[i])
 AtomsBase.atomic_mass(sys::Crystal, ::Colon) = atomic_mass.(sys.atoms)
 
 AtomsBase.atomic_symbol(sys::Crystal) = atomic_symbol.(sys.atoms)
-AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = sys.atoms[i].sym
+AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = atomic_symbol(sys.atoms[i])
 
 AtomsBase.atomic_number(sys::Crystal, ::Colon) = atomic_number.(sys.atoms)
 AtomsBase.atomic_number(sys::Crystal) = atomic_number.(sys.atoms)
