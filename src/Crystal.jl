@@ -81,7 +81,7 @@ Base.length(sys::Crystal) = length(sys.atoms)
 Base.iterate(sys::Crystal, state = 1) = state > length(sys) ? nothing : (sys.atoms[state], state + 1)
 Base.eachindex(sys::Crystal) = Base.OneTo(length(sys))
 
-AtomsBase.bounding_box(sys::Crystal) = sys.lattice.primitive_vectors .* sys.N_unit_cells
+AtomsBase.bounding_box(sys::Crystal) = collect(eachrow(sys.lattice.primitive_vectors .* sys.N_unit_cells))
 AtomsBase.boundary_conditions(sys::Crystal{3}) = SVector(Periodic(),Periodic(),Periodic())
 AtomsBase.boundary_conditions(sys::Crystal{2}) = SVector(Periodic(),Periodic())
 AtomsBase.n_dimensions(sys::Crystal) = length(sys.N_unit_cells)
