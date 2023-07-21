@@ -5,10 +5,10 @@ export
 periodic_table = PeriodicTable.elements
 
 struct Atom{D,C,M}
-    atomic_symbol::Symbol
+    sym::Symbol
     position::SVector{D}
     charge::C
-    atomic_mass::M
+    mass::M
 end
 
 function Atom(sym::Symbol, position; charge =0.0u"q", mass = periodic_table[sym].atomic_mass)
@@ -28,9 +28,9 @@ Base.getindex(atom::Atom, x::Symbol) = hasfield(Atom, x) ? getfield(atom, x) : e
 Base.get(atom::Atom, x::Symbol, default) = hasfield(Atom, x) ? getfield(atom,x) : default
 Base.pairs(atom::Atom) = (k => atom[k] for k in keys(atom))
 
-AtomsBase.atomic_symbol(atom::Atom) = atom.atomic_symbol
-AtomsBase.atomic_mass(atom::Atom) = atom.atomic_mass
-AtomsBase.atomic_number(atom::Atom) = (atom.atomic_symbol == :unknown) ? :unknown : periodic_table[atom.atomic_symbol].number
+AtomsBase.atomic_symbol(atom::Atom) = atom.sym
+AtomsBase.atomic_mass(atom::Atom) = atom.mass
+AtomsBase.atomic_number(atom::Atom) = (atom.sym == :unknown) ? :unknown : periodic_table[atom.sym].number
 AtomsBase.position(atom::Atom) = atom.position
 AtomsBase.velocity(atom::Atom) = missing
 AtomsBase.n_dimensions(::Atom{D}) where D = D
