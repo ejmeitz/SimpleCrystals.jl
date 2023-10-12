@@ -56,10 +56,10 @@ function get_coordinates(lattice::BravaisLattice{D}, basis, N::SVector{D}) where
     #Superimpose basis onto lattice points
     for i in range(0,N_lattice_pts-1)
         n = convert_1d_index(i, N)
-        lattice_pt = lattice[n...]
+        lattice_pt = Vector(lattice[n...])
         for (j,basis_atom) in enumerate(basis)
-            atoms[N_basis_atoms*i + j] = Atom(atomic_symbol(basis_atom), lattice_pt .+ basis_atom.position,
-                charge(basis_atom), atomic_mass(basis_atom))
+            atoms[N_basis_atoms*i + j] = Atom(atomic_symbol(basis_atom), lattice_pt .+ basis_atom.position;
+                charge = charge(basis_atom), mass = atomic_mass(basis_atom))
         end
     end
 

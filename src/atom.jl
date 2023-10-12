@@ -4,19 +4,19 @@ export
 #Load periodic table data
 periodic_table = PeriodicTable.elements
 
-struct Atom{D,C,M}
+struct Atom{D,T,C,M}
     atomic_symbol::Symbol
-    position::SVector{D}
+    position::Vector{T}
     charge::C
     atomic_mass::M
 end
 
 function Atom(sym::Symbol, position; charge =0.0u"q", mass = periodic_table[sym].atomic_mass)
-    return Atom{length(position),typeof(charge),typeof(mass)}(sym, position, charge, mass)
+    return Atom{length(position),eltype(position),typeof(charge),typeof(mass)}(sym, position, charge, mass)
 end
 
 function Atom(position, mass::Number; charge = 0.0u"q")
-    return Atom{length(position), typeof(charge), typeof(mass)}(:unknown, position, charge, mass)
+    return Atom{length(position),eltype(position),typeof(charge), typeof(mass)}(:unknown, position, charge, mass)
 end
 
 
