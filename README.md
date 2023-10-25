@@ -154,8 +154,20 @@ The SimpleCrystals API is not exhaustive, but provides an interface to create no
 
 The code below defines the BravaisLattice() object as a primitive, cubic lattice (simple cubic) with lattice parameter `a`. Then the basis is constructed as a list of Atom() objects. In this example, each basis atom is the same element but that could easily be changed. Finally, the Crystal() object is constructed from the BravaisLattice object and the list of basis atoms.
 
-https://github.com/ejmeitz/SimpleCrystals.jl/blob/b042850c0308c43eef660a5cbe1020622c9d1140/src/non_bravais/3D_other.jl#L9C1-L20C4
-
+```julia
+function Diamond(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
+    basis = [Atom([zero(a),zero(a),zero(a)],atomic_mass, charge = charge),
+             Atom([zero(a), 0.5*a, 0.5*a], atomic_mass, charge = charge),
+             Atom([0.5*a, zero(a), 0.5*a], atomic_mass, charge = charge),
+             Atom([0.5*a, 0.5*a, zero(a)], atomic_mass, charge = charge),
+             Atom([0.25*a, 0.25*a, 0.25*a], atomic_mass, charge = charge),
+             Atom([0.25*a, 0.75*a, 0.75*a], atomic_mass, charge = charge),
+             Atom([0.75*a, 0.25*a, 0.75*a], atomic_mass, charge = charge),
+             Atom([0.75*a, 0.75*a, 0.25*a], atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+```
 Similarly, we can create NaCl (not in the API) which can be thought of as a simple cubic lattice with an 8 atom basis or two intertwined FCC lattices.
 
 2-Atom Basis SC:
