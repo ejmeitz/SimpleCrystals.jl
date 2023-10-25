@@ -154,7 +154,7 @@ The SimpleCrystals API is not exhaustive, but provides an interface to create no
 
 The code below defines the BravaisLattice() object as a primitive, cubic lattice (simple cubic) with lattice parameter `a`. Then the basis is constructed as a list of Atom() objects. In this example, each basis atom is the same element but that could easily be changed. Finally, the Crystal() object is constructed from the BravaisLattice object and the list of basis atoms.
 
-https://github.com/ejmeitz/SimpleCrystals.jl/blob/0ccc3f28e81d2c0aa5087039a52e94038520bad4/src/Crystals.jl#L99-L110
+https://github.com/ejmeitz/SimpleCrystals.jl/blob/b042850c0308c43eef660a5cbe1020622c9d1140/src/non_bravais/3D_other.jl#L9C1-L20C4
 
 Similarly, we can create NaCl (not in the API) which can be thought of as a simple cubic lattice with an 8 atom basis or two intertwined FCC lattices.
 
