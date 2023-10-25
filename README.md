@@ -162,14 +162,14 @@ Similarly, we can create NaCl (not in the API) which can be thought of as a simp
 ```julia
 function NaCl1(a, N::SVector{3})
     lattice = BravaisLattice(CubicLattice(a), Primitive())
-    basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
-             Atom(:Na, SVector(0.5*a,zero(a),0.5*a), charge = 1.0u"q"),
-             Atom(:Na, SVector(zero(a), 0.5*a, 0.5*a), charge = 1.0u"q"),
-             Atom(:Na, SVector(0.5*a,0.5*a,zero(a)), charge = 1.0u"q"),
-             Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q"),
-             Atom(:Cl, SVector(zero(a), 0.5*a, zero(a)), charge = -1.0u"q"),
-             Atom(:Cl, SVector(zero(a),zero(a),0.5*a), charge = -1.0u"q"),
-             Atom(:Cl, SVector(0.5*a, 0.5*a, 0.5*a), charge = -1.0u"q")]
+    basis = [Atom(:Na, [zero(a), zero(a), zero(a)], charge = 1.0u"q"),
+             Atom(:Na, [0.5*a,zero(a),0.5*a], charge = 1.0u"q"),
+             Atom(:Na, [zero(a), 0.5*a, 0.5*a], charge = 1.0u"q"),
+             Atom(:Na, [0.5*a,0.5*a,zero(a)], charge = 1.0u"q"),
+             Atom(:Cl, [0.5*a, zero(a), zero(a)], charge = -1.0u"q"),
+             Atom(:Cl, [zero(a), 0.5*a, zero(a)], charge = -1.0u"q"),
+             Atom(:Cl, [zero(a),zero(a),0.5*a], charge = -1.0u"q"),
+             Atom(:Cl, [0.5*a, 0.5*a, 0.5*a], charge = -1.0u"q")]
     return Crystal(lattice,basis,N)
 end
 ```
@@ -177,8 +177,8 @@ Intertwined FCC:
 ```julia
 function NaCl2(a, N::SVector{3})
     lattice = BravaisLattice(CubicLattice(a), FaceCentered())
-    basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
-             Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q")]
+    basis = [Atom(:Na, [zero(a), zero(a), zero(a)], charge = 1.0u"q"),
+             Atom(:Cl, [0.5*a, zero(a), zero(a)], charge = -1.0u"q")]
     return Crystal(lattice,basis,N)
 end
 ```
