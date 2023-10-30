@@ -107,7 +107,7 @@ Diamond and HCP are also implemented as part of the API:
 
 #### 2D Bravais Lattices
 All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
-The full list of implemented functions can be found [here]([https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/3D_bravais.jl](https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/2D_bravais.jl)). 
+The full list of implemented functions can be found [here](https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/2D_bravais.jl)). 
 <table>
     <tr>
         <th>Crystal Family</th>
