@@ -5,7 +5,7 @@
 [![Latest release](https://img.shields.io/github/release/ejmeitz/SimpleCrystals.jl.svg)](https://github.com/ejmeitz/SimpleCrystals.jl/releases/latest)
 [![Documentation stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://ejmeitz.github.io/SimpleCrystals.jl/stable/)
 
- SimpleCrystals.jl is an interface for creating crystal geometries for molecular simulation within Julia. SimpleCrystals implements all 3D and 2D Bravais lattices (e.g. FCC & BCC) and allows users to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures. The [AtomsBase](https://github.com/JuliaMolSim/AtomsBase.jl) interface is implemented to make use with other Julian molecular simulation software simple. There is no support for reading in crystal structures from other software (e.g. CIF files). SimpleCrystals is intended to provide a quick, lightweight method for generating atomic coordinates without leaving Julia.
+ SimpleCrystals.jl is an interface for creating crystal geometries for molecular simulation within Julia. SimpleCrystals implements all 3D and 2D Bravais lattices (e.g. FCC & BCC) and allows users to define a custom basis to create polyatomic Bravais lattices or to create non-Bravais crystal structures. The [AtomsBase](https://github.com/JuliaMolSim/AtomsBase.jl) interface is implemented to make use with other Julian molecular simulation software simple. There is no support for reading in crystal structures from other software (e.g. CIF files). Check out [Xtals.jl](https://github.com/SimonEnsemble/Xtals.jl) or [AtomsIO.jl](https://github.com/mfherbst/AtomsIO.jl) for that. SimpleCrystals is intended to provide a quick, lightweight method for generating atomic coordinates without leaving Julia.
 
 
 
@@ -20,17 +20,16 @@ fcc_crystal = FCC(a, :C, SVector(4,4,4))
 atoms = fcc_crystal.atoms
 to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 
-#Equivalently, if you just want to specify an atomic mass
+#Equivalently if you do not want to specify an atomic species
 a = 5.4u"Å"
-fcc_crystal = FCC(a, 12.011u"g/mol", SVector(4,4,4))
+fcc_crystal = FCC(a, 12.01u"g/mol", SVector(4,4,4))
 atoms = fcc_crystal.atoms
 to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 ```
 
 #### 3D Bravais Lattices
 All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily in OVITO.
-
-```@raw html
+The full list of implemented functions can be found [here](https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/3D_bravais.jl). 
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -90,11 +89,10 @@ All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [
     </tr>
 
 </table>
-```
 
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API: 
-```@raw html
+
 <table>
     <tr>
         <td align="center">Diamond</td>
@@ -105,12 +103,11 @@ Diamond and HCP are also implemented as part of the API:
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png" alt="2" width = 160px height = 120px> </td>
     </tr>
 </table>
-```
+
 
 #### 2D Bravais Lattices
 All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
-
-```@raw html
+The full list of implemented functions can be found [here](https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/2D_bravais.jl). 
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -139,57 +136,67 @@ All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [
     </tr>
 
 </table>
-```
+
 
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
 
-```@raw html
 <table>
     <th align="center">Honeycomb</th>
     <tr>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png" alt="1" width = 160px height = 120px> </td>
     </tr>
 </table>
-```
+
 
 #### User Defined Crystal Structures
 The SimpleCrystals API is not exhaustive, but provides an interface to create non-bravais crystals and polyatomic crystals. For example, the Diamond crystal structure (which is a part of the API) is defined as simple cubic Bravais lattice with an 8 atom basis. Diamond is more naturally thought of as an FCC lattice with a 2 atom basis, but that would require a triclinic boundary.
 
 The code below defines the BravaisLattice() object as a primitive, cubic lattice (simple cubic) with lattice parameter `a`. Then the basis is constructed as a list of Atom() objects. In this example, each basis atom is the same element but that could easily be changed. Finally, the Crystal() object is constructed from the BravaisLattice object and the list of basis atoms.
 
-https://github.com/ejmeitz/SimpleCrystals.jl/blob/0ccc3f28e81d2c0aa5087039a52e94038520bad4/src/Crystals.jl#L99-L110
-
+```julia
+function Diamond(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
+    basis = [Atom([zero(a),zero(a),zero(a)],atomic_mass, charge = charge),
+             Atom([zero(a), 0.5*a, 0.5*a], atomic_mass, charge = charge),
+             Atom([0.5*a, zero(a), 0.5*a], atomic_mass, charge = charge),
+             Atom([0.5*a, 0.5*a, zero(a)], atomic_mass, charge = charge),
+             Atom([0.25*a, 0.25*a, 0.25*a], atomic_mass, charge = charge),
+             Atom([0.25*a, 0.75*a, 0.75*a], atomic_mass, charge = charge),
+             Atom([0.75*a, 0.25*a, 0.75*a], atomic_mass, charge = charge),
+             Atom([0.75*a, 0.75*a, 0.25*a], atomic_mass, charge = charge)]
+    return Crystal(lattice,basis,N)
+end
+```
 Similarly, we can create NaCl (not in the API) which can be thought of as a simple cubic lattice with an 8 atom basis or two intertwined FCC lattices.
 
 2-Atom Basis SC:
 ```julia
 function NaCl1(a, N::SVector{3})
-    lattice = BravaisLattice(Cubic(a), Primitive())
-    basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
-             Atom(:Na, SVector(0.5*a,zero(a),0.5*a), charge = 1.0u"q"),
-             Atom(:Na, SVector(zero(a), 0.5*a, 0.5*a), charge = 1.0u"q"),
-             Atom(:Na, SVector(0.5*a,0.5*a,zero(a)), charge = 1.0u"q"),
-             Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q"),
-             Atom(:Cl, SVector(zero(a), 0.5*a, zero(a)), charge = -1.0u"q"),
-             Atom(:Cl, SVector(zero(a),zero(a),0.5*a), charge = -1.0u"q"),
-             Atom(:Cl, SVector(0.5*a, 0.5*a, 0.5*a), charge = -1.0u"q")]
+    lattice = BravaisLattice(CubicLattice(a), Primitive())
+    basis = [Atom(:Na, [zero(a), zero(a), zero(a)], charge = 1.0u"q"),
+             Atom(:Na, [0.5*a,zero(a),0.5*a], charge = 1.0u"q"),
+             Atom(:Na, [zero(a), 0.5*a, 0.5*a], charge = 1.0u"q"),
+             Atom(:Na, [0.5*a,0.5*a,zero(a)], charge = 1.0u"q"),
+             Atom(:Cl, [0.5*a, zero(a), zero(a)], charge = -1.0u"q"),
+             Atom(:Cl, [zero(a), 0.5*a, zero(a)], charge = -1.0u"q"),
+             Atom(:Cl, [zero(a),zero(a),0.5*a], charge = -1.0u"q"),
+             Atom(:Cl, [0.5*a, 0.5*a, 0.5*a], charge = -1.0u"q")]
     return Crystal(lattice,basis,N)
 end
 ```
 Intertwined FCC:
 ```julia
 function NaCl2(a, N::SVector{3})
-    lattice = BravaisLattice(Cubic(a), FaceCentered())
-    basis = [Atom(:Na, SVector(zero(a), zero(a), zero(a)), charge = 1.0u"q"),
-             Atom(:Cl, SVector(0.5*a, zero(a), zero(a)), charge = -1.0u"q")]
+    lattice = BravaisLattice(CubicLattice(a), FaceCentered())
+    basis = [Atom(:Na, [zero(a), zero(a), zero(a)], charge = 1.0u"q"),
+             Atom(:Cl, [0.5*a, zero(a), zero(a)], charge = -1.0u"q")]
     return Crystal(lattice,basis,N)
 end
 ```
 
 Both methods yield the same structure with periodic boundary conditions, but the first function uses a conventional cell so the result is much easier to see and create a simulation box for. Whenever possible use a conventional cell (simple cubic lattice). Note that to use both of these functions the lattice parameter a is the distance between Na atoms (or Cl atoms) not the Na-Cl distance as the basis places the atoms at the proper 0.5*a spacing.
 
-```@raw html
 <table>
 <tr>
     <th align="center">Conventional Cell</th>
@@ -200,7 +207,6 @@ Both methods yield the same structure with periodic boundary conditions, but the
     <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
 </tr>
 </table>
-```
 
 #### File I/O
 
