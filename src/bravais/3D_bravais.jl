@@ -17,7 +17,7 @@ function SC(a::T, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C") where 
     return Crystal(lattice,basis,N)
 end
 
-function SC(a::T, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+function SC(a::T, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C") where T
     lattice = BravaisLattice(CubicLattice(a), Primitive())
     basis = [Atom([zero(a), zero(a), zero(a)], atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
@@ -109,7 +109,7 @@ function MonoclinicBaseCentered(a::T, b::T, c::T, β::T, atomic_symbol::Symbol, 
     return Crystal(lattice,basis,N)
 end
 
-function MonoclinicBaseCentered(a::T, b::T, c::T, β::T, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+function MonoclinicBaseCentered(a::T, b::T, c::T, β::T, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C") where T
     float_type = typeof(ustrip(a))
     half_a = float_type(0.5)*a
     half_b = float_type(0.5)*b

@@ -19,13 +19,13 @@ end
 
 #####
 
-function Rectangular(a, b, atomic_symbol::Symbol, N::SVector{2}; charge = 0.0u"C") where T
+function Rectangular(a::T, b::T, atomic_symbol::Symbol, N::SVector{2}; charge = 0.0u"C") where T
     lattice = BravaisLattice(RectangularLattice(a, b), Primitive())
     basis = [Atom(atomic_symbol, [zero(a),zero(b)], charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
-function Rectangular(a, b, atomic_mass::Number, N::SVector{2}; charge = 0.0u"C") where T
+function Rectangular(a::T, b::T, atomic_mass::Number, N::SVector{2}; charge = 0.0u"C") where T
     lattice = BravaisLattice(RectangularLattice(a, b), Primitive())
     basis = [Atom([zero(a),zero(b)], atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
@@ -55,13 +55,13 @@ end
 
 #####
 
-function Square(a, atomic_symbol::Symbol, N::SVector{2}; charge = 0.0u"C") where T
+function Square(a::T, atomic_symbol::Symbol, N::SVector{2}; charge = 0.0u"C") where T
     lattice = BravaisLattice(SquareLattice(a), Primitive())
     basis = [Atom(atomic_symbol, [zero(a),zero(a)], charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
-function Square(a, atomic_mass::Number, N::SVector{2}; charge = 0.0u"C")  where T
+function Square(a::T, atomic_mass::Number, N::SVector{2}; charge = 0.0u"C")  where T
     lattice = BravaisLattice(SquareLattice(a), Primitive())
     basis = [Atom([zero(a),zero(a)], atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
@@ -69,13 +69,13 @@ end
 
 #####
 
-function Hexagonal(a, atomic_symbol::Symbol, N::SVector{2}; charge = 0.0u"C")  where T
+function Hexagonal(a::T, atomic_symbol::Symbol, N::SVector{2}; charge = 0.0u"C")  where T
     lattice = BravaisLattice(Hexagonal2DLattice(a), Primitive())
     basis = [Atom(atomic_symbol, [zero(a),zero(a)], charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
-function Hexagonal(a, atomic_mass::Number, N::SVector{2}; charge = 0.0u"C")  where T
+function Hexagonal(a::T, atomic_mass::Number, N::SVector{2}; charge = 0.0u"C")  where T
     lattice = BravaisLattice(Hexagonal2DLattice(a), Primitive())
     basis = [Atom([zero(a),zero(a)], atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
