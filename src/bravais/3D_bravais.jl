@@ -25,35 +25,43 @@ end
 
 # Monoatomic FCC -- 4 Atom Basis with SC Lattice Points
 function FCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
+    T = typeof(ustrip(a))
+    half_a = T(0.5)*a
     lattice = BravaisLattice(CubicLattice(a), Primitive())
     basis = [Atom(atomic_symbol, [zero(a),zero(a),zero(a)], charge = charge),
-             Atom(atomic_symbol, [0.5*a, 0.5*a, zero(a)], charge = charge),
-             Atom(atomic_symbol, [0.5*a, zero(a), 0.5*a], charge = charge),
-             Atom(atomic_symbol, [zero(a), 0.5*a, 0.5*a], charge = charge)]
+             Atom(atomic_symbol, [half_a, half_a, zero(a)], charge = charge),
+             Atom(atomic_symbol, [half_a, zero(a), half_a], charge = charge),
+             Atom(atomic_symbol, [zero(a), half_a, half_a], charge = charge)]
     return Crystal(lattice, basis, N)
 end
 
 function FCC(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    T = typeof(ustrip(a))
+    half_a = T(0.5)*a
     lattice = BravaisLattice(CubicLattice(a), Primitive())
     basis = [Atom([zero(a),zero(a),zero(a)], atomic_mass, charge = charge),
-             Atom([0.5*a, 0.5*a, zero(a)], atomic_mass, charge = charge),
-             Atom([0.5*a, zero(a), 0.5*a], atomic_mass, charge = charge),
-             Atom([zero(a), 0.5*a, 0.5*a], atomic_mass, charge = charge)]
+             Atom([half_a, half_a, zero(a)], atomic_mass, charge = charge),
+             Atom([half_a, zero(a), half_a], atomic_mass, charge = charge),
+             Atom([zero(a), half_a, half_a], atomic_mass, charge = charge)]
     return Crystal(lattice, basis, N)
 end
 
 # Monoatomic BCC -- 2 Atom Basis with SC Lattice Points
 function BCC(a, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
+    T = typeof(ustrip(a))
+    half_a = T(0.5)*a
     lattice = BravaisLattice(CubicLattice(a), Primitive())
     basis = [Atom(atomic_symbol, [zero(a),zero(a),zero(a)], charge = charge),
-             Atom(atomic_symbol, [0.5*a, 0.5*a, 0.5*a], charge = charge)]
+             Atom(atomic_symbol, [half_a, half_a, half_a], charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
 function BCC(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C")
+    T = typeof(ustrip(a))
+    half_a = T(0.5)*a
     lattice = BravaisLattice(CubicLattice(a), Primitive())
     basis = [Atom([zero(a),zero(a),zero(a)], atomic_mass, charge = charge),
-             Atom([0.5*a, 0.5*a, 0.5*a], atomic_mass, charge = charge)]
+             Atom([half_a, half_a, half_a], atomic_mass, charge = charge)]
     return Crystal(lattice,basis,N)
 end
 
@@ -61,7 +69,7 @@ end
 ### Triclinic ###
 #################
 
-function Triclinic(a, b, c, α, β, γ, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
+function Triclinic(a::T, b::T, c::T, α::T, β::T, γ::T, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C")
     lattice = BravaisLattice(TriclinicLattice(a,b,c,α,β,γ), Primitive())
     basis = [Atom(atomic_symbol, [zero(a),zero(a),zero(a)], charge = charge)]
     return Crystal(lattice,basis,N)
