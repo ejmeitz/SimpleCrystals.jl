@@ -31,7 +31,7 @@ end
     fcc_crystal = FCC(0.54u"nm", :C, SVector(4,4,4))
 
     @test n_dimensions(fcc_crystal) == 3
-    @test atomic_mass(fcc_crystal, 1) == atomic_mass(fcc_crystal[1])
+    @test mass(fcc_crystal, 1) == mass(fcc_crystal[1])
     @test atomic_symbol(fcc_crystal,1) == :C
 end
 
@@ -40,6 +40,6 @@ end
     sc_crystal2 = SC(0.54u"nm", 12.011u"g/mol", SVector(4,4,4))
 
     @test length(sc_crystal) == length(sc_crystal2)
-    @test atomic_mass(sc_crystal) ≈ uconvert.(u"u", atomic_mass(sc_crystal2) ./ Unitful.Na)
+    @test mass(sc_crystal) ≈ uconvert.(u"u", mass(sc_crystal2) ./ Unitful.Na)
     @test position(sc_crystal) == position(sc_crystal2)
 end

@@ -3,7 +3,7 @@ using AtomsBase
 
 export Crystal
 
-struct Crystal{D, A, B <: AbstractVector{<:Atom{D}}} <: AbstractSystem{D}
+struct Crystal{D, A, B <: AbstractVector{<:Atom{D}}} <: AtomsBase.AbstractSystem{D}
     lattice::BravaisLattice{D}
     basis::B
     N_unit_cells::SVector{D}
@@ -82,15 +82,16 @@ Base.length(sys::Crystal) = length(sys.atoms)
 Base.iterate(sys::Crystal, state = 1) = state > length(sys) ? nothing : (sys.atoms[state], state + 1)
 Base.eachindex(sys::Crystal) = Base.OneTo(length(sys))
 
-AtomsBase.bounding_box(sys::Crystal) = collect(eachrow(sys.lattice.primitive_vectors .* sys.N_unit_cells))
-AtomsBase.boundary_conditions(sys::Crystal{3}) = SVector(Periodic(),Periodic(),Periodic())
-AtomsBase.boundary_conditions(sys::Crystal{2}) = SVector(Periodic(),Periodic())
+AtomsBase.bounding_box(sys::Crystal) = tuple(eachrow(sys.lattice.primitive_vectors .* sys.N_unit_cells)...)
+AtomsBase.periodicity(sys::Crystal{3}) = (true, true, true)
+AtomsBase.periodicity(sys::Crystal{2}) = (true, true)
+AtomsBase.cell(sys::Crystal) = AtomsBase.PeriodicCell(bounding_box(sys), perioperiodicitydic_system(sys))
 AtomsBase.n_dimensions(sys::Crystal) = length(sys.N_unit_cells)
 
 AtomsBase.atomkeys(sys::Crystal) = keys(sys.atoms[1])
 AtomsBase.hasatomkey(sys::Crystal, x::Symbol) = haskey(sys.atoms[1], x)
 
-AtomsBase.species_type(sys::Crystal) = typeof(sys.atoms[1])
+# AtomsBase.species_type(sys::Crystal) = typeof(sys.atoms[1])
 
 AtomsBase.position(sys::Crystal) = position.(sys.atoms)
 AtomsBase.position(sys::Crystal, i::Integer) = sys.atoms[i].position
@@ -100,9 +101,9 @@ AtomsBase.velocity(sys::Crystal) = missing #zeros(size(sys.atoms)) * u"m * s^-1"
 AtomsBase.velocity(sys::Crystal, i::Integer) = missing #zeros(size(sys.atoms[i]))* u"m * s^-1"
 AtomsBase.velocity(sys::Crystal, ::Colon) = missing
 
-AtomsBase.atomic_mass(sys::Crystal) = atomic_mass.(sys.atoms)
-AtomsBase.atomic_mass(sys::Crystal, i::Integer) = atomic_mass(sys.atoms[i])
-AtomsBase.atomic_mass(sys::Crystal, ::Colon) = atomic_mass.(sys.atoms)
+AtomsBase.mass(sys::Crystal) = atomic_mass.(sys.atoms)
+AtomsBase.mass(sys::Crystal, i::Integer) = atomic_mass(sys.atoms[i])
+AtomsBase.mass(sys::Crystal, ::Colon) = atomic_mass.(sys.atoms)
 
 AtomsBase.atomic_symbol(sys::Crystal) = atomic_symbol.(sys.atoms)
 AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = atomic_symbol(sys.atoms[i])

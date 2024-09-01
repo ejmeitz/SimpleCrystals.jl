@@ -29,7 +29,7 @@ Base.get(atom::Atom, x::Symbol, default) = hasfield(Atom, x) ? getfield(atom,x) 
 Base.pairs(atom::Atom) = (k => atom[k] for k in keys(atom))
 
 AtomsBase.atomic_symbol(atom::Atom) = atom.atomic_symbol
-AtomsBase.atomic_mass(atom::Atom) = atom.atomic_mass
+AtomsBase.mass(atom::Atom) = atom.atomic_mass
 AtomsBase.atomic_number(atom::Atom) = (atom.atomic_symbol == :unknown) ? :unknown : periodic_table[atom.atomic_symbol].number
 AtomsBase.position(atom::Atom) = atom.position
 AtomsBase.velocity(atom::Atom) = missing

@@ -11,9 +11,9 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [compat]
-AtomsBase = "0.3"
+AtomsBase = "0.4"
 PeriodicTable = "1.1"
 Reexport = "1"
 StaticArrays = "1.5.17"
 Unitful = "1"
-julia = "1.7"
+julia = "1.7,1.10"
