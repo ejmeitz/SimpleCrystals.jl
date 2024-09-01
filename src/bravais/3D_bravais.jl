@@ -35,7 +35,7 @@ function FCC(a::T, atomic_symbol::Symbol, N::SVector{3}; charge = 0.0u"C") where
     return Crystal(lattice, basis, N)
 end
 
-function FCC(a, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C") where T
+function FCC(a::T, atomic_mass::Number, N::SVector{3}; charge = 0.0u"C") where T
     float_type = typeof(ustrip(a))
     half_a = float_type(0.5)*a
     lattice = BravaisLattice(CubicLattice(a), Primitive())

@@ -36,10 +36,10 @@ AtomsBase.velocity(atom::Atom) = missing
 AtomsBase.n_dimensions(::Atom{D}) where D = D
 
 function Base.show(io::IO, atom::Atom)
-    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(atomic_mass(atom)) ")
+    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(mass(atom)) ")
 end
 
 
 function Base.show(io::IO, ::MIME"text/plain", atom::Atom)
-    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(atomic_mass(atom)) ")
+    print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(mass(atom)) ")
 end

@@ -59,7 +59,7 @@ function get_coordinates(lattice::BravaisLattice{D}, basis, N::SVector{D}) where
         lattice_pt = Vector(lattice[n...])
         for (j,basis_atom) in enumerate(basis)
             atoms[N_basis_atoms*i + j] = Atom(atomic_symbol(basis_atom), lattice_pt .+ basis_atom.position;
-                charge = charge(basis_atom), mass = atomic_mass(basis_atom))
+                charge = charge(basis_atom), mass = mass(basis_atom))
         end
     end
 
@@ -101,9 +101,9 @@ AtomsBase.velocity(sys::Crystal) = missing #zeros(size(sys.atoms)) * u"m * s^-1"
 AtomsBase.velocity(sys::Crystal, i::Integer) = missing #zeros(size(sys.atoms[i]))* u"m * s^-1"
 AtomsBase.velocity(sys::Crystal, ::Colon) = missing
 
-AtomsBase.mass(sys::Crystal) = atomic_mass.(sys.atoms)
-AtomsBase.mass(sys::Crystal, i::Integer) = atomic_mass(sys.atoms[i])
-AtomsBase.mass(sys::Crystal, ::Colon) = atomic_mass.(sys.atoms)
+AtomsBase.mass(sys::Crystal) = mass.(sys.atoms)
+AtomsBase.mass(sys::Crystal, i::Integer) = mass(sys.atoms[i])
+AtomsBase.mass(sys::Crystal, ::Colon) = mass.(sys.atoms)
 
 AtomsBase.atomic_symbol(sys::Crystal) = atomic_symbol.(sys.atoms)
 AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = atomic_symbol(sys.atoms[i])
