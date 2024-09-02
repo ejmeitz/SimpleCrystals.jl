@@ -30,7 +30,23 @@ to_xyz(fcc_crystal, raw"./positions_fcc.xyz")
 #### 3D Bravais Lattices
 All 3D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/). The radius of the atoms is chosen arbitrarily in OVITO.
 The full list of implemented functions can be found [here](https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/3D_bravais.jl). 
-<table>
+
+| Crystal Family | Primitive | Base Centered | Body Centered | Face Centered |
+|     :---:      |   :---:   |     :---:     |     :---:     |     :---:     |
+| **Cubic**<br>a = b = c<br>α = β = γ = 90° | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/SC.png) |  | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/BCC.png) | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/FCC.png) |
+| **Triclinic**<br>a ≠ b ≠ c<br>α ≠ β ≠ γ | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/triclinic.png) |  |  |  |
+| **Monoclinic**<br>a ≠ b ≠ c<br>α = γ = 90°, β | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/monoclinic.png) | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_base_centered.png) |  |  |
+| **Orthorhombic**<br>a ≠ b ≠ c<br>α = β = γ = 90° | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho.png) | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho_base.png) | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho_body.png) | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho_fcc.png) |
+| **Tetragonal**<br>a = b ≠ c<br>α = β = γ = 90° | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/tetragonal.png) |  | ![2](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/tetragonal_body.png) |  |
+| **Hexagonal (Rhombohedral)**<br>a = b = c<br>α = β = γ | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rhomb.png) |  |  |  |
+| **Hexagonal**<br>a, c<br>α = β = 90°, γ = 120° | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_3d.png) |  |  |  |
+
+
+
+
+
+
+<!-- <table>
     <tr>
         <th>Crystal Family</th>
         <th align="center">Primitive</th>
@@ -80,7 +96,7 @@ The full list of implemented functions can be found [here](https://github.com/ej
         <td align="center"></td>
         <td align="center"></td>
     </tr>
-      <tr>
+    <tr>
         <td align="center"><strong>Hexagonal</strong><br>a, c<br>&alpha; = &beta; = 90&#176, &gamma; = 120&#176</td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_3d.png" alt="1" width = 160px height = 120px> </td>
         <td align="center"></td>
@@ -88,12 +104,17 @@ The full list of implemented functions can be found [here](https://github.com/ej
         <td align="center"></td>
     </tr>
 
-</table>
+</table> -->
 
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API: 
 
-<table>
+| Diamond | HCP |
+|:-------:|:---:|
+| ![Diamond](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/diamond.png) | ![HCP](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png) |
+
+
+<!-- <table>
     <tr>
         <td align="center">Diamond</td>
         <td align="center">HCP</td>
@@ -102,12 +123,21 @@ Diamond and HCP are also implemented as part of the API:
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/diamond.png" alt="2" width = 160px height = 120px> </td>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png" alt="2" width = 160px height = 120px> </td>
     </tr>
-</table>
+</table> -->
 
 
 #### 2D Bravais Lattices
 All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
 The full list of implemented functions can be found [here](https://github.com/ejmeitz/SimpleCrystals.jl/blob/main/src/bravais/2D_bravais.jl). 
+
+| Crystal Family | Primitive | Centered |
+|:--------------:|:---------:|:--------:|
+| **Monoclinic**<br>a ≠ b<br>θ ≠ 90° | ![Primitive](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/oblique.png) |  |
+| **Orthorhombic**<br>a ≠ b<br>θ = 90° | ![Primitive](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rect.png) | ![Centered](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rect_centered.png) |
+| **Tetragonal**<br>a = b<br>θ = 90° | ![Primitive](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/square.png) |  |
+| **Hexagonal**<br>θ = 120° | ![Primitive](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_2d.png) |  |
+
+<!-- 
 <table>
     <tr>
         <th>Crystal Family</th>
@@ -135,18 +165,23 @@ The full list of implemented functions can be found [here](https://github.com/ej
         <td align="center"></td>
     </tr>
 
-</table>
+</table> -->
 
 
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
 
-<table>
+| Honeycomb |
+|:---------:|
+| ![Honeycomb](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png) |
+
+
+<!-- <table>
     <th align="center">Honeycomb</th>
     <tr>
         <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png" alt="1" width = 160px height = 120px> </td>
     </tr>
-</table>
+</table> -->
 
 
 #### User Defined Crystal Structures
@@ -197,7 +232,12 @@ end
 
 Both methods yield the same structure with periodic boundary conditions, but the first function uses a conventional cell so the result is much easier to see and create a simulation box for. Whenever possible use a conventional cell (simple cubic lattice). Note that to use both of these functions the lattice parameter a is the distance between Na atoms (or Cl atoms) not the Na-Cl distance as the basis places the atoms at the proper 0.5*a spacing.
 
-<table>
+| Conventional Cell | FCC Unit Cell |
+|:-----------------:|:--------------:|
+| ![Conventional Cell](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png) | ![FCC Unit Cell](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png) |
+
+
+<!-- <table>
 <tr>
     <th align="center">Conventional Cell</th>
     <th align="center">FCC Unit Cell</th>
@@ -206,7 +246,7 @@ Both methods yield the same structure with periodic boundary conditions, but the
     <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px></td>
     <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
 </tr>
-</table>
+</table> -->
 
 #### File I/O
 
