@@ -258,7 +258,7 @@ fcc_crystal = FCC(a, :C, SVector(4,4,4))
 to_xyz(fcc_crystal, raw"C:\Users\ejmei\Desktop\positions_fcc.xyz")
 ```
 
-To get the list of atoms in code you can use the `atoms` member variable. The code below will return the array of atoms that the to_xyz() function builds internally. AlLternatively, you can loop over the crystal object which will iterate through the `crystal.atoms` list.
+To get the list of atoms in code you can use the `atoms` member variable. The code below will return the array of atoms that the to_xyz() function builds internally. Alternatively, you can loop over the crystal object which will iterate through the `crystal.atoms` list.
 
 ```julia
 a = 5.4u"Å"
