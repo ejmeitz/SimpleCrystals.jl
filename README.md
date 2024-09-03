@@ -42,89 +42,12 @@ The full list of implemented functions can be found [here](https://github.com/ej
 | **Hexagonal**<br>a, c<br>α = β = 90°, γ = 120° | ![1](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_3d.png) |  |  |  |
 
 
-
-
-
-
-<!-- <table>
-    <tr>
-        <th>Crystal Family</th>
-        <th align="center">Primitive</th>
-        <th align="center">Base Centered</th>
-        <th align="center">Body Centered</th>
-        <th align="center">Face Centered</th>
-    </tr>
-    <tr>
-        <td align="center"><strong>Cubic</strong><br>a = b = c<br>&alpha; = &beta; = &gamma; = 90&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/SC.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/BCC.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/FCC.png" alt="2" width = 160px height = 120px> </td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Triclinic</strong><br>a &#8800; b &#8800; c<br>&alpha; &#8800; &beta; &#8800; &gamma;</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/triclinic.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Monoclinic</strong><br>a &#8800; b &#8800; c<br>&alpha; = &gamma; = 90&#176, &beta;</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/monoclinic.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/mono_base_centered.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"></td>
-        <td align="center"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Orthorhombic</strong><br>a &#8800; b &#8800; c<br>&alpha; = &beta; = &gamma; = 90&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho_base.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho_body.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/ortho_fcc.png" alt="2" width = 160px height = 120px> </td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Tetragonal</strong><br>a = b &#8800; c<br> &alpha; = &beta; = &gamma; = 90&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/tetragonal.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/tetragonal_body.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Hexagonal (Rhombohedral)</strong><br>a = b = c<br>&alpha; = &beta; = &gamma;</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rhomb.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-    </tr>
-    <tr>
-        <td align="center"><strong>Hexagonal</strong><br>a, c<br>&alpha; = &beta; = 90&#176, &gamma; = 120&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_3d.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-        <td align="center"></td>
-        <td align="center"></td>
-    </tr>
-
-</table> -->
-
 #### Other 3D Structrues
 Diamond and HCP are also implemented as part of the API: 
 
 | Diamond | HCP |
 |:-------:|:---:|
 | ![Diamond](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/diamond.png) | ![HCP](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png) |
-
-
-<!-- <table>
-    <tr>
-        <td align="center">Diamond</td>
-        <td align="center">HCP</td>
-    </tr>
-    <tr>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/diamond.png" alt="2" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/HCP.png" alt="2" width = 160px height = 120px> </td>
-    </tr>
-</table> -->
-
 
 #### 2D Bravais Lattices
 All 2D Bravais lattices created from the SimpleCrystal's API and visualized in [OVITO](https://ovito.org/).
@@ -137,52 +60,12 @@ The full list of implemented functions can be found [here](https://github.com/ej
 | **Tetragonal**<br>a = b<br>θ = 90° | ![Primitive](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/square.png) |  |
 | **Hexagonal**<br>θ = 120° | ![Primitive](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_2d.png) |  |
 
-<!-- 
-<table>
-    <tr>
-        <th>Crystal Family</th>
-        <th align="center">Primitive</th>
-        <th align="center">Centered</th>
-    </tr>
-    <tr>
-        <td><strong>Monoclinic</strong><br>a &#8800; b<br>&theta; &#8800; 90&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/oblique.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-    </tr>
-    <tr>
-        <td><strong>Orthorhombic</strong><br>a &#8800; b<br>&theta; = 90&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rect.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/rect_centered.png" alt="2" width = 160px height = 120px> </td>
-    </tr>
-    <tr>
-        <td><strong>Tetragonal</strong><br>a = b<br>&theta; = 90&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/square.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-    </tr>
-    <tr>
-        <td><strong>Hexagonal</strong><br>&theta; = 120&#176</td>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/hex_2d.png" alt="1" width = 160px height = 120px> </td>
-        <td align="center"></td>
-    </tr>
-
-</table> -->
-
-
 #### Other 2D Structures
 The honeycomb lattice is the only 2D non-bravais lattice implemented as part of the SimpleCrystals API.
 
 | Honeycomb |
 |:---------:|
 | ![Honeycomb](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png) |
-
-
-<!-- <table>
-    <th align="center">Honeycomb</th>
-    <tr>
-        <td align="center"> <img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/honeycomb.png" alt="1" width = 160px height = 120px> </td>
-    </tr>
-</table> -->
-
 
 #### User Defined Crystal Structures
 The SimpleCrystals API is not exhaustive, but provides an interface to create non-bravais crystals and polyatomic crystals. For example, the Diamond crystal structure (which is a part of the API) is defined as simple cubic Bravais lattice with an 8 atom basis. Diamond is more naturally thought of as an FCC lattice with a 2 atom basis, but that would require a triclinic boundary.
@@ -235,18 +118,6 @@ Both methods yield the same structure with periodic boundary conditions, but the
 | Conventional Cell | FCC Unit Cell |
 |:-----------------:|:--------------:|
 | ![Conventional Cell](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png) | ![FCC Unit Cell](https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png) |
-
-
-<!-- <table>
-<tr>
-    <th align="center">Conventional Cell</th>
-    <th align="center">FCC Unit Cell</th>
-</tr>
-<tr>
-    <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/NaCl_8atom_basis.png" alt="1" width = 320px height = 240px></td>
-    <td align="center"><img src="https://github.com/ejmeitz/SimpleCrystals.jl/raw/main/assets/nacl_fcc_basis.png" alt="1" width = 320px height = 240px></td>
-</tr>
-</table> -->
 
 #### File I/O
 
