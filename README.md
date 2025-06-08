@@ -140,3 +140,6 @@ for atom in fcc_crystal
     #do something
 end
 ```
+
+There are also functions `to_ucposcar` and `to_ssposcar` to generate poscar files. If your crystal
+does not use Unitful ensure your positions and lattice vectors are in Angstroms. 
