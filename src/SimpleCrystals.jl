@@ -2,6 +2,7 @@ module SimpleCrystals
 
 using Reexport
 using PeriodicTable
+using Printf
 
 @reexport using AtomsBase
 @reexport using Unitful
