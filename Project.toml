@@ -14,7 +14,7 @@ Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 [compat]
 AtomsBase = "0.5"
 PeriodicTable = "1.1"
-Printf = "1.11.0"
+Printf = "^1.10"
 Reexport = "1"
 StaticArrays = "1.5.17"
 Unitful = "1"
