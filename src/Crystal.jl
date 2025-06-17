@@ -85,7 +85,7 @@ Base.eachindex(sys::Crystal) = Base.OneTo(length(sys))
 AtomsBase.cell_vectors(sys::Crystal) = tuple(eachrow(sys.lattice.primitive_vectors .* sys.N_unit_cells)...)
 AtomsBase.periodicity(sys::Crystal{3}) = (true, true, true)
 AtomsBase.periodicity(sys::Crystal{2}) = (true, true)
-AtomsBase.cell(sys::Crystal) = AtomsBase.PeriodicCell(cell_vectors(sys), perioperiodicitydic_system(sys))
+AtomsBase.cell(sys::Crystal) = AtomsBase.PeriodicCell(cell_vectors(sys), periodicity(sys))
 AtomsBase.n_dimensions(sys::Crystal) = length(sys.N_unit_cells)
 
 AtomsBase.atomkeys(sys::Crystal) = keys(sys.atoms[1])
