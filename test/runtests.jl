@@ -29,10 +29,18 @@ end
 @testset "AtomsBase" begin
     
     fcc_crystal = FCC(0.54u"nm", :C, SVector(4,4,4))
+    c = cell(fcc_crystal)
 
     @test n_dimensions(fcc_crystal) == 3
     @test mass(fcc_crystal, 1) == mass(fcc_crystal[1])
     @test atomic_symbol(fcc_crystal,1) == :C
+
+    @test cell_vectors(fcc_crystal) isa NTuple{3, SVector{3}}
+    @test periodicity(fcc_crystal) isa NTuple{3, Bool}
+    @test cell(fcc_crystal) isa AtomsBase.PeriodicCell
+    @test typeof(mass(fcc_crystal, 1)) <: Unitful.Mass
+    @test ismissing(velocity(fcc_crystal))
+
 end
 
 @testset "Alternate Atom Constructor" begin

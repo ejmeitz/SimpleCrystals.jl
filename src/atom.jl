@@ -1,8 +1,7 @@
-export
-    Atom
+export Atom
 
 #Load periodic table data
-periodic_table = PeriodicTable.elements
+const periodic_table = PeriodicTable.elements
 
 struct Atom{D,T,C,M}
     atomic_symbol::Symbol
@@ -11,12 +10,12 @@ struct Atom{D,T,C,M}
     atomic_mass::M
 end
 
-function Atom(sym::Symbol, position; charge =0.0u"q", mass = periodic_table[sym].atomic_mass)
+function Atom(sym::Symbol, position; charge = 0.0u"q", mass = periodic_table[sym].atomic_mass)
     return Atom{length(position),eltype(position),typeof(charge),typeof(mass)}(sym, position, charge, mass)
 end
 
-function Atom(position, mass::Number; charge = 0.0u"q")
-    return Atom{length(position),eltype(position),typeof(charge), typeof(mass)}(:unknown, position, charge, mass)
+function Atom(position, mass::Number; charge = 0.0u"q", symbol = :unknown)
+    return Atom{length(position),eltype(position),typeof(charge), typeof(mass)}(symbol, position, charge, mass)
 end
 
 
