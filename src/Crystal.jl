@@ -95,8 +95,6 @@ AtomsBase.n_dimensions(sys::Crystal) = length(sys.N_unit_cells)
 AtomsBase.atomkeys(sys::Crystal) = keys(sys.atoms[1])
 AtomsBase.hasatomkey(sys::Crystal, x::Symbol) = haskey(sys.atoms[1], x)
 
-# AtomsBase.species_type(sys::Crystal) = typeof(sys.atoms[1])
-
 AtomsBase.position(sys::Crystal) = position.(sys.atoms)
 AtomsBase.position(sys::Crystal, i::Integer) = sys.atoms[i].position
 AtomsBase.position(sys::Crystal, ::Colon) = position.(sys.atoms)
@@ -111,10 +109,15 @@ AtomsBase.mass(sys::Crystal, ::Colon) = mass.(sys.atoms)
 
 AtomsBase.atomic_symbol(sys::Crystal) = atomic_symbol.(sys.atoms)
 AtomsBase.atomic_symbol(sys::Crystal, i::Integer) = atomic_symbol(sys.atoms[i])
+AtomsBase.atomic_symbol(sys::Crystal, ::Colon) = atomic_symbol.(sys.atoms)
 
 AtomsBase.atomic_number(sys::Crystal, ::Colon) = atomic_number.(sys.atoms)
 AtomsBase.atomic_number(sys::Crystal) = atomic_number.(sys.atoms)
 AtomsBase.atomic_number(sys::Crystal, i::Integer) = atomic_number(sys.atoms[i])
+
+AtomsBase.species(sys::Crystal, i::Integer) = species(sys[i])
+AtomsBase.species(sys::Crystal) = species.(sys.atoms)
+AtomsBase.species(sys::Crystal, ::Colon) = species.(sys.atoms)
 
 AtomsBase.visualize_ascii(sys::Crystal) = ""
 

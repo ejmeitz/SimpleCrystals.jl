@@ -34,6 +34,8 @@ AtomsBase.position(atom::Atom) = atom.position
 AtomsBase.velocity(atom::Atom) = missing
 AtomsBase.n_dimensions(::Atom{D}) where D = D
 
+AtomsBase.species(atom::Atom) = atom.atomic_symbol
+
 function Base.show(io::IO, atom::Atom)
     print(io, "Atom at $(round.(ustrip.(atom.position), digits = 3)), with charge: $(charge(atom)) and mass : $(mass(atom)) ")
 end
