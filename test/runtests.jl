@@ -46,8 +46,14 @@ end
 @testset "Alternate Atom Constructor" begin
     sc_crystal = SC(0.54u"nm", :C, SVector(4,4,4))
     sc_crystal2 = SC(0.54u"nm", 12.011u"g/mol", SVector(4,4,4))
+    sc_crystal3 = SC(0.54u"nm", 12.011u"g/mol", SVector(4,4,4); atomic_symbol = :C)
 
     @test length(sc_crystal) == length(sc_crystal2)
+    @test length(sc_crystal) == length(sc_crystal3)
+
     @test mass(sc_crystal) ≈ uconvert.(u"u", mass(sc_crystal2) ./ Unitful.Na)
+    @test mass(sc_crystal) ≈ uconvert.(u"u", mass(sc_crystal3) ./ Unitful.Na)
+
     @test position(sc_crystal) == position(sc_crystal2)
+    @test position(sc_crystal) == position(sc_crystal3)
 end
